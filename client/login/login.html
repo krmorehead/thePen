@@ -1,0 +1,31 @@
+<md-content ng-style="{'background-image': 'url(' + currentPhoto + ')', 'background-repeat': 'no-repeat', 'background-position' :'center', 'background-size':'100%'}">
+  <div layout="row" layout-align="center center"  style="min-height: 500px">
+
+  <md-card flex = "20" ng-style = "{'opacity':'8.5'}">
+    <md-card-content>
+      <h2 ng-cloak class = "center">{{message}}</h2>
+      <section layout="column" layout-align="center center" layout-wrap>
+
+        <md-input-container class = "md-block">
+          <label>User Name</label>
+          <input ng-model = "loginData.userName" type="text">
+        </md-input-container>
+        <md-input-container class = "md-block">
+          <label>Display Name</label>
+          <input ng-model = "loginData.displayName" type="text">
+        </md-input-container>        
+        <md-input-container>
+          <label>Password</label>
+          <input ng-model = "loginData.password" type="text">
+        </md-input-container>
+
+
+        <md-button class="loginBtns md-raised md-warn" ng-click = "loginUser()">Login</md-button>
+        <md-button class="loginBtns md-raised md-warn">Login With Facebook</md-button>
+        <md-button class="loginBtns md-raised md-warn" ng-click = "createAccount()">Create An Account</md-button>
+      </section> 
+
+    </md-card-content>
+  </md-card>
+</div>
+</md-content>
