@@ -1,8 +1,9 @@
 var express = require('express');
 var path = require('path')
-var mainController = require('./db/mainController')
-
 var app = express();
+var mainController = require('./db/mainController')
+//establish the API routes
+require('./apiRoutes')(app, express)
 
 //find all of the assets for our page
 app.use(express.static(__dirname+'/../client/'));
