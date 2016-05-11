@@ -17,7 +17,7 @@
                 <label>First Name</label>
                 <input ng-model = "loginData.firstName1" name = "firstName1" required type="text" >
                 <div ng-messages="loginForm.firstName1.$error">
-                  <div ng-message="required">This is required.</div>
+                  <div ng-message="required">Please fill out this section.</div>
                 </div>
               </md-input-container>
               <md-input-container class = "md-block">
@@ -32,7 +32,7 @@
                 <label>First Name</label>
                 <input ng-model = "loginData.firstName2" name = "firstName2" required type="text">
                 <div ng-messages="loginForm.firstName2.$error">
-                  <div ng-message="required">This is required.</div>
+                  <div ng-message="required">Please fill out this section.</div>
                 </div>
               </md-input-container>
               <md-input-container class = "md-block">
@@ -48,7 +48,7 @@
               <label>Primary Email</label>
               <input ng-model = "loginData.primaryEmail" name = "primaryEmail" required type="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
               <div ng-messages="loginForm.primaryEmail.$error">
-                <div ng-message-exp ="['required', 'minlength', 'maxlength', 'pattern']">You must enter a valid Email address.</div>
+                <div ng-message-exp ="['required', 'minlength', 'maxlength', 'pattern']">Please enter a valid Email address.</div>
             </div>             
             </md-input-container>        
 
@@ -62,9 +62,9 @@
             <label>Password</label>
             <input ng-model = "lginData.password" name = "password" required type="text" minlength="10" maxlength="100">
             <div ng-messages="loginForm.password.$error">
-              <div ng-message="required">This is required.</div>
+              <div ng-message="required">Please fill out this section.</div>
             </div>
-          </md-input-container>
+          </md-input-container> 
 
           <md-button class="loginBtns md-raised md-warn" ng-click = "loginUser()">Login</md-button>
           <md-button class="loginBtns md-raised md-warn">Login With Facebook</md-button>
