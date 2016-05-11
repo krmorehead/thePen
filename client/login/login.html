@@ -1,28 +1,59 @@
-<md-content ng-style="{'background-image': 'url(' + currentPhoto + ')'}" class = "transistionFillBackground">
+<md-content ng-style="{'background-image': 'url(' + currentPhoto + ')'}" class = "transistionFillBackground pageWrap">
   <div layout="row" layout-align="center center"  style="min-height: 500px">
 
-  <md-card flex = "25" ng-style = "{'opacity':'0.8'}">
+  <md-card flex = "40" ng-style = "{'opacity':'0.8'}">
     <md-card-content>
       <h2 ng-cloak class = "center">{{message}}</h2>
       <section layout="column" layout-align="center center" layout-wrap>
 
-        <md-input-container class = "md-block">
-          <label>User Name</label>
-          <input ng-model = "loginData.userName" type="text">
-        </md-input-container>
-        <md-input-container class = "md-block">
-          <label>Display Name</label>
-          <input ng-model = "loginData.displayName" type="text">
-        </md-input-container>        
+        <div ng-show = "loginData.createAccount">
+          <label class = "left">Partner 1</label>
+
+          <div layout-gt-sm="row">
+            <md-input-container>
+              <label>First Name</label>
+              <input ng-model = "loginData.firstName1" type="text">
+            </md-input-container>
+            <md-input-container class = "md-block">
+              <label>Last Name</label>
+              <input ng-model = "loginData.lastName1" type="text">
+            </md-input-container>
+          </div>
+
+          <label>Partner 2</label>
+          <div layout-gt-sm="row">
+            <md-input-container>
+              <label>First Name</label>
+              <input ng-model = "loginData.firstName2" type="text">
+            </md-input-container>
+            <md-input-container class = "md-block">
+              <label>Last Name</label>
+              <input ng-model = "loginData.lastName2" type="text">
+            </md-input-container>
+          </div>
+
+        </div>
+        
+        <div layout-gt-sm="row">
+          <md-input-container class = "md-block">
+            <label>Primary Email</label>
+            <input ng-model = "loginData.primaryEmail" type="text">
+          </md-input-container>        
+
+          <md-input-container class = "md-block">
+            <label>Secondary Email (optional)</label>
+            <input ng-model = "loginData.secondaryEmail" type="text">
+          </md-input-container> 
+        </div>
+
         <md-input-container>
           <label>Password</label>
           <input ng-model = "loginData.password" type="text">
         </md-input-container>
 
-
         <md-button class="loginBtns md-raised md-warn" ng-click = "loginUser()">Login</md-button>
         <md-button class="loginBtns md-raised md-warn">Login With Facebook</md-button>
-        <md-button class="loginBtns md-raised md-warn" ng-click = "createAccount()">Create An Account</md-button>
+        <md-button class="loginBtns md-raised md-warn" ng-click = "createAccount();">Create An Account</md-button>
       </section> 
 
     </md-card-content>
