@@ -1,10 +1,10 @@
 angular.module("coupleFriends",[
   // "teacherPortal.HomepageController",
-  // "teacherPortal.Services",
   "ui.router",
   "angularMoment",
   'ngMaterial',
   'ngMessages',
+  "coupleFriends.Services",
   "coupleFriends.LoginController"
 ])
 

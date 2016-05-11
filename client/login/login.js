@@ -1,6 +1,6 @@
 angular.module("coupleFriends.LoginController", [])
 
-.controller("LoginController", function($scope, $interval){
+.controller("LoginController", function($scope, $interval, Auth){
   // $scope.loginData = {}
   $scope.message = ""
   $scope.currentPhoto = "resources/doubleDating1.jpg"
@@ -24,11 +24,33 @@ angular.module("coupleFriends.LoginController", [])
 
   $scope.createAccount = function(){
     if($scope.loginData.createAccount){
-      console.log("createAccount")
+      console.log("creating Account")
+      Auth.createUser($scope.loginData)
+      .then(function(response){
+        if(response["created"]){
+          console.log("logging in")
+          $scope.loginUser()
+        } else {
+          $scope.message = response.message
+        }
+      })
     } else {
       $scope.loginData.createAccount = true
       console.log($scope.loginData)
     }
+  }
+  
+
+  $scope.loginUser = function () {
+    userData.loginUser($scope.loginData)
+    .then(function (response) {
+      if(response["loggedin"]){
+        userData.updateUserData(response.userData)
+        $location.path("/stream")
+      } else {
+        $scope.message = response.message
+      }
+    })
   }
 
   var checkLoginDetails = function(){
