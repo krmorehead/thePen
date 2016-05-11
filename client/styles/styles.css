@@ -3,6 +3,7 @@
 }
 
 .transistionFillBackground{
+  background-color: rgb(80,80,80);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;

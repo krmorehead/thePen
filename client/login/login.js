@@ -1,7 +1,7 @@
 angular.module("coupleFriends.LoginController", [])
 
 .controller("LoginController", function($scope, $interval){
-  $scope.loginData = {}
+  // $scope.loginData = {}
   $scope.message = ""
   $scope.currentPhoto = "resources/doubleDating1.jpg"
   var currentPhotoIndex = 0;
