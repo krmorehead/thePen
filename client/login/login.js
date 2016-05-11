@@ -1,7 +1,7 @@
 angular.module("coupleFriends.LoginController", [])
 
 .controller("LoginController", function($scope, $interval, Auth){
-  // $scope.loginData = {}
+  $scope.loginData = {}
   $scope.message = ""
   $scope.currentPhoto = "resources/doubleDating1.jpg"
   var currentPhotoIndex = 0;
@@ -42,10 +42,10 @@ angular.module("coupleFriends.LoginController", [])
   
 
   $scope.loginUser = function () {
-    userData.loginUser($scope.loginData)
+    Auth.loginUser($scope.loginData)
     .then(function (response) {
       if(response["loggedin"]){
-        userData.updateUserData(response.userData)
+        // userData.updateUserData(response.userData)
         $location.path("/stream")
       } else {
         $scope.message = response.message

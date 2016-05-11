@@ -15,7 +15,7 @@ angular.module('coupleFriends.Services',[])
       return $http({
         method: "POST",
         url: "/login",
-        data: userData
+        data: loginData
       }).then(function (response){
         return response.data
       })
