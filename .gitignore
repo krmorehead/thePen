@@ -18,7 +18,7 @@ Icon
 
 node_modules/
 db/
-client/lib
+client/libs
 
 # Floobits
 .floo
