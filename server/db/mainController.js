@@ -47,10 +47,10 @@ var findUser = function(name, password, callback){
   })
 }
 
-var findUserByUserName = function(userName, callback){
-  connection.query('SELECT * FROM users where userName=?', [userName], function(err, rows){
+var findUserByPrimaryEmail = function(primaryEmail, callback){
+  connection.query('SELECT * FROM users where primaryEmail=?', [primaryEmail], function(err, rows){
     if(err){
-      console.log("Error in controllers.js finding user by userName :", err)
+      console.log("Error in controllers.js finding user by primaryEmail :", err)
       callback(err, null);
     } else{
       callback(null, rows);
@@ -215,5 +215,5 @@ module.exports = {
   findUserById: findUserById,
   updateUser: updateUser,
   deleteUser: deleteUser,
-  findUserByUserName : findUserByUserName
+  findUserByPrimaryEmail : findUserByPrimaryEmail
 };
