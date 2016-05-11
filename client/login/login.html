@@ -8,8 +8,8 @@
         <h2 ng-cloak class = "center">{{message}}</h2>
         <section layout="column" layout-align="center center" layout-wrap>
 
-          <!-- <div ng-show = "loginData.createAccount"> -->
-          <div>
+          <div ng-show = "loginData.createAccount">
+          <!-- <div> -->
             <label class = "left">Partner 1</label>
 
             <div layout-gt-sm="row">
@@ -46,7 +46,7 @@
           <div layout-gt-sm="row">
             <md-input-container class = "md-block">
               <label>Primary Email</label>
-              <input ng-model = "loginData.primaryEmail" name = "primaryEmail" required type="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+              <input ng-model = "loginData.primaryEmail" name = "primaryEmail" required type="text" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
               <div ng-messages="loginForm.primaryEmail.$error">
                 <div ng-message-exp ="['required', 'minlength', 'maxlength', 'pattern']">Please enter a valid Email address.</div>
             </div>             
@@ -60,7 +60,7 @@
 
           <md-input-container>
             <label>Password</label>
-            <input ng-model = "lginData.password" name = "password" required type="text" minlength="10" maxlength="100">
+            <input ng-model = "loginData.password" name = "password" required type="text" minlength="10" maxlength="100">
             <div ng-messages="loginForm.password.$error">
               <div ng-message="required">Please fill out this section.</div>
             </div>
