@@ -1,5 +1,6 @@
 var mainController = require('./db/mainController')
 var bcrypt = require('bcrypt');
+var session = require('express-session')
 
 module.exports = function (app, express) {
   app.post("/login", function(req, res){

@@ -4,10 +4,13 @@ var app = express();
 var mainController = require('./db/mainController')
 var bodyParser = require('body-parser');
 
+
+require('./session').setup(app, express)
 //to make sure the POST are decoded correctly
 app.use(bodyParser.json());
 //establish the API routes
 require('./apiRoutes')(app, express)
+
 
 //find all of the assets for our page
 app.use(express.static(__dirname+'/../client/'));
