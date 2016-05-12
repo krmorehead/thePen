@@ -2,6 +2,8 @@ angular.module('coupleFriends.Services',[])
 
   .factory("Auth", function ($http) {
     var createUser = function(userData){
+      delete userData.createUser
+      console.log(userData, "userdata")
       return $http({
         method: "POST",
         url: "/createUser",

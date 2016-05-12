@@ -2,6 +2,10 @@ var express = require('express');
 var path = require('path')
 var app = express();
 var mainController = require('./db/mainController')
+var bodyParser = require('body-parser');
+
+//to make sure the POST are decoded correctly
+app.use(bodyParser.json());
 //establish the API routes
 require('./apiRoutes')(app, express)
 

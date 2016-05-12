@@ -3,15 +3,18 @@ var bcrypt = require('bcrypt');
 
 module.exports = function (app, express) {
   app.post("/login", function(req, res){
+    res.send("yay login")
   })  
 
   app.post('/createUser', function (req, res) {
+
+
   mainController.findUserByPrimaryEmail(req.body.primaryEmail, function (err, response){
     if(err){
       console.log("Error in router finding user by primaryEmail")
     } else {
       if(response.length){
-        res.send({created:false, message: "I'm sorry that User Name is already taken"})
+        res.send({created:false, message: "I'm sorry that Email already has an account"})
       } else {
         bcrypt.hash(req.body.password, 13, function(err, hash) {
           if(err){
@@ -30,7 +33,7 @@ module.exports = function (app, express) {
       }
     }
 
-    res.send({created:false, message: "Error creating user. Please try again"})
+    // res.send({created:false, message: "Error creating user. Please try again"})
   })
 })
 }

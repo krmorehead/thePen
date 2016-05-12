@@ -23,21 +23,21 @@ angular.module("coupleFriends.LoginController", [])
   }, 3000)
 
 
-  $scope.createAccount = function(){
-    if($scope.loginData.createAccount){
-      console.log("creating Account", checkLoginDetails())
+  $scope.createUser = function(){
+    if($scope.loginData.createUser){
+      checkLoginDetails()
 
-      // Auth.createUser($scope.loginData)
-      // .then(function(response){
-      //   if(response["created"]){
-      //     console.log("logging in")
-      //     $scope.loginUser()
-      //   } else {
-      //     $scope.message = response.message
-      //   }
-      // })
+      Auth.createUser($scope.loginData)
+      .then(function(response){
+        if(response["created"]){
+          console.log("logging in")
+          $scope.loginUser()
+        } else {
+          $scope.message = response.message
+        }
+      })
     } else {
-      $scope.loginData.createAccount = true
+      $scope.loginData.createUser = true
       console.log($scope.loginData)
     }
   }
@@ -59,12 +59,12 @@ angular.module("coupleFriends.LoginController", [])
     console.log($scope.loginData)
     if($scope.loginData.primaryEmail && $scope.loginData.password){
       //need additional checks for creating an account
-      if($scope.loginData.createAccount){
+      if($scope.loginData.createUser){
         if($scope.loginData.firstName1 && $scope.loginData.firstName1) {
           return true
         }
+      //if just login check then already passed
       } else {
-        //if just login check then already passed
         return true
       }
     }
