@@ -22,19 +22,14 @@ module.exports = function (app, express) {
             var token = jwt.sign(userData, 'supernova', {
               expiresIn: "1d"
             });
+            //adds session to the queue
+            sessionController.addSession({userId:response, lastLocation:"Homepage"}, function(err, response){
+              console.log(response, "response")
+            })
             // res.send({token: token,
                       // userObj: userObj})
 
- res.send({loggedin : true, userData: userData})                //create the session
-                // req.login(userData, function(err){
-                //   if(err){
-                //     console.log("Error logging in at login", err)
-                //   } else {
-                //     req.session.passport.user = userData.id
-                //     req.session.lastLocation = ["Homepage", new Date]
-                //     res.send({loggedin : true, userData: userData})
-                //   }
-                // })
+ res.send({loggedin : true, userData: userData})
               } else {
                 res.send({loggedin : false, message: "incorrect password"})
               }
