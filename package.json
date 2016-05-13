@@ -1,0 +1,29 @@
+{
+  "name": "couple-friends",
+  "version": "1.0.0",
+  "description": "because every couple needs a couple",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^0.8.6",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^6.2.0",
+    "mysql": "^2.10.2",
+    "passport": "^0.3.2",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krmorehead/couple-friends.git"
+  },
+  "author": "Kyle Morehead",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krmorehead/couple-friends/issues"
+  },
+  "homepage": "https://github.com/krmorehead/couple-friends#readme"
+}
