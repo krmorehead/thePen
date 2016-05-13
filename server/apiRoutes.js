@@ -1,6 +1,5 @@
 var mainController = require('./db/mainController')
 var bcrypt = require('bcrypt');
-var session = require('express-session')
 
 module.exports = function (app, express) {
 
@@ -18,6 +17,8 @@ module.exports = function (app, express) {
               console.log("Error in login comparing passwords")
             } else {
               if(bcryptResponse){
+
+
  res.send({loggedin : true, userData: userData})                //create the session
                 // req.login(userData, function(err){
                 //   if(err){

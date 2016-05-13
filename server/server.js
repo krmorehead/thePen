@@ -5,7 +5,7 @@ var mainController = require('./db/mainController')
 var bodyParser = require('body-parser');
 
 
-require('./session').setup(app, express)
+// require('./session').setup(app, express)
 //to make sure the POST are decoded correctly
 app.use(bodyParser.json());
 //establish the API routes

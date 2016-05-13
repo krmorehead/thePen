@@ -8,5 +8,5 @@ var setup = function (app, express) {
 }
 
 module.exports = {
-  setup:setup
+  setup: setup
 }
