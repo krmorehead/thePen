@@ -48,7 +48,8 @@ angular.module("coupleFriends.LoginController", [])
     .then(function (response) {
       if(response["loggedin"]){
         // userData.updateUserData(response.userData)
-        $location.path("/stream")
+        console.log('loggedIn')
+        $location.path("/homepage")
       } else {
         $scope.message = response.message
       }
