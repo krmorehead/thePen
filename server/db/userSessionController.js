@@ -31,9 +31,9 @@ var destroySesionBySessionId = function(sessionId, callback) {
   connection.query('DELETE from userSessions where id = ?', sessionId, function (err, response){
     if(err) {
       console.log("Error destroying session ", err)
-      calback(err, null)
+      callback(err, null)
     } else {
-      calback(null, response)
+      callback(null, response)
     }
   })
 }

@@ -23,7 +23,7 @@ module.exports = function (app, express) {
               expiresIn: "1d"
             });
             //adds session to the queue
-            sessionController.addSession({userId:response, lastLocation:"Homepage"}, function(err, response){
+            sessionController.addSession({userId:userData.id, lastLocation:"Homepage"}, function(err, response){
               console.log(response, "response")
             })
             // res.send({token: token,
