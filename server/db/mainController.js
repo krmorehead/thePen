@@ -3,8 +3,8 @@ var _ = require('underscore');
 
 var connection = mysql.createConnection({
   user: "root",
-  password: "supernova",
-  database: "coupleFriendsMain"
+  password: "Kamnec1!",
+  database: "thePenMainDb"
 });
 
 connection.connect(function(err){

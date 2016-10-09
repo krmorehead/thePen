@@ -25,22 +25,6 @@
                 <input ng-model = "loginData.lastName1" type="text">
               </md-input-container>
             </div>
-
-            <label>Partner 2</label>
-            <div layout-gt-sm="row">
-              <md-input-container>
-                <label>First Name</label>
-                <input ng-model = "loginData.firstName2" name = "firstName2" required type="text">
-                <div ng-messages="loginForm.firstName2.$error">
-                  <div ng-message="required">Please fill out this section.</div>
-                </div>
-              </md-input-container>
-              <md-input-container class = "md-block">
-                <label>Last Name (optional)</label>
-                <input ng-model = "loginData.lastName2" type="text">
-              </md-input-container>
-            </div>
-
           </div>
           
           <div layout-gt-sm="row">
@@ -52,11 +36,6 @@
                 <div ng-message-exp ="['required', 'minlength', 'maxlength', 'pattern']">Please enter a valid Email address.</div>
             </div>             
             </md-input-container>        
-
-            <md-input-container class = "md-block">
-              <label>Secondary Email (optional)</label>
-              <input ng-model = "loginData.secondaryEmail" type="text">
-            </md-input-container> 
           </div>
 
           <md-input-container>

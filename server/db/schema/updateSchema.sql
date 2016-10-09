@@ -1,8 +1,8 @@
 -- current update
-USE coupleFriendsSessions;
+USE thePenMainDb;
 
-ALTER TABLE userSessions DROP COLUMN primaryEmail;
-ALTER TABLE userSessions ADD COLUMN userId int NOT NULL;
+-- ALTER TABLE userSessions DROP COLUMN primaryEmail;
+-- ALTER TABLE userSessions ADD COLUMN userId int NOT NULL;
 -- ALTER TABLE users ADD COLUMN displayName varchar(200) NOT NULL;
 
 -- example update

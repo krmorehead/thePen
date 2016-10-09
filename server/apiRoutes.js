@@ -1,5 +1,4 @@
 var mainController = require('./db/mainController')
-var sessionController = require('./db/userSessionController')
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
@@ -19,17 +18,17 @@ module.exports = function (app, express) {
               console.log("Error in login comparing passwords")
             } else {
               if(bcryptResponse){
-            var token = jwt.sign(userData, 'supernova', {
-              expiresIn: "1d"
-            });
-            //adds session to the queue
-            sessionController.addSession({userId:userData.id, lastLocation:"Homepage"}, function(err, response){
-              console.log(response, "response")
-            })
-            // res.send({token: token,
-                      // userObj: userObj})
+                var token = jwt.sign(userData, 'supernova', {
+                  expiresIn: "1d"
+                });
+                //adds session to the queue
+                sessionController.addSession({userId:userData.id, lastLocation:"Homepage"}, function(err, response){
+                  console.log(response, "response")
+                })
+                // res.send({token: token,
+                          // userObj: userObj})
 
- res.send({loggedin : true, userData: userData})
+                res.send({loggedin : true, userData: userData})
               } else {
                 res.send({loggedin : false, message: "incorrect password"})
               }
