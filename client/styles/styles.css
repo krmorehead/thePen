@@ -1,26 +1,36 @@
+@font-face {
+    font-family:"EuphoriaScript-Regular";
+    src: url("../resources/fonts/EuphoriaScript-Regular.ttf") /* TTF file for CSS3 browsers */
+}
+
 .red, button.red {
-  background-color: rgb(255,87,34)
+    background-color: rgb(255,87,34)
 }
 
 .transistionFillBackground{
-  background-color: rgb(80,80,80);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
-  transition: background 1s ease-in-out;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height:90vh;
+    transition: background 1s ease-in-out;
 }
 
 body{
-  background-color: rgb(80,80,80);
+    background-color: rgb(80,80,80);
+    font-family: "EuphoriaScript-Regular";
+    font-size:3vh;
+    font-weight: bold;
+    width: 100vw;
+    height: 100vh;
 }
 
 md-content{
-  margin: 0 2% 0 2%;
+    margin: 0 2% 0 2%;
 
 }
 
 .center{
-  text-align: center;
+    text-align: center;
 }
 
 .left{

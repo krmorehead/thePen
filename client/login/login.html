@@ -1,4 +1,4 @@
-<md-content ng-style="{'background-image': 'url(' + currentPhoto + ')'}" class = "transistionFillBackground pageWra">
+<md-content flex = "100" ng-style="{'background-image': 'url(' + currentPhoto + ')'}" class = "transistionFillBackground pageWra">
   <div layout="row" layout-align="center center"  style="min-height: 500px">
 
   <md-card flex = "40" ng-style = "{'opacity':'0.8'}">
@@ -8,25 +8,34 @@
         <h2 ng-cloak class = "center">{{message}}</h2>
         <section layout="column" layout-align="center center" layout-wrap>
 
-          <div ng-show = "loginData.createUser">
+          <div ng-if = "loginData.createUser">
           <!-- <div> -->
-            <label class = "left">Partner 1</label>
-
             <div layout-gt-sm="row">
               <md-input-container>
                 <label>First Name</label>
-                <input ng-model = "loginData.firstName1" name = "firstName1" required type="text" >
-                <div ng-messages="loginForm.firstName1.$error">
+                <input ng-model = "loginData.firstName" name = "firstName" required type="text" >
+                <div ng-messages="loginForm.firstName.$error">
                   <div ng-message="required">Please fill out this section.</div>
                 </div>
               </md-input-container>
               <md-input-container class = "md-block">
                 <label>Last Name (optional)</label>
-                <input ng-model = "loginData.lastName1" type="text">
+                <input ng-model = "loginData.lastName" type="text">
               </md-input-container>
             </div>
           </div>
-          
+
+          <div layout-gt-sm="column" ng-if = "loginData.createUser">
+            <md-title>This will be your personal link.</md-title>
+            <md-input-container class = "md-block">
+              <label>Display URL</label>
+              <input ng-model = "loginData.displayUrl" type="text" name = "displayUrl" required minlength="1" maxlength="100" >
+              <div ng-messages="loginForm.displayUrl.$error">
+                <div ng-message-exp ="['required', 'minlength', 'maxlength', 'pattern']">This field must not have /'s.</div>
+            </div>             
+            </md-input-container>        
+          </div>    
+
           <div layout-gt-sm="row">
             <md-input-container class = "md-block">
               <label>Primary Email</label>
@@ -46,9 +55,9 @@
             </div>
           </md-input-container> 
 
-          <md-button class="loginBtns md-raised md-warn" ng-click = "loginUser()">Login</md-button>
-          <md-button class="loginBtns md-raised md-warn">Login With Facebook</md-button>
-          <md-button class="loginBtns md-raised md-warn" ng-click = "createUser();">Create An Account</md-button>
+          <md-button class="loginBtns md-raised" ng-click = "loginUser()">Login</md-button>
+          <md-button class="loginBtns md-raised">Login With Facebook</md-button>
+          <md-button class="loginBtns md-raised" ng-click = "createUser();">Create An Account</md-button>
         </section> 
       </form>
     </md-card-content>
