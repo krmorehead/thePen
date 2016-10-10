@@ -6,9 +6,8 @@ CREATE TABLE users (
   /* a user table */
   id int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (ID),
-  firstName varchar(200) NOT NULL,
+  displayName varchar(200) NOT NULL,
   displayUrl varchar(200) NOT NULL,
-  lastName varchar(200),
   primaryEmail varchar(200) NOT NULL,
   profile_photo varchar(300),
   password varchar(200) NOT NULL
