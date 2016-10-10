@@ -15,10 +15,10 @@
      
 
     function config($stateProvider) {
-        $stateProvider.state("login", {
-            url: "/login",
-            templateUrl:"login/login.html",
-            controller: "LoginController as vm"
+        $stateProvider.state("homepage", {
+            url: "/:displayUrl",
+            templateUrl:"homepage/homepage.html",
+            controller: "HomepageCtrl"
         })
     }
 

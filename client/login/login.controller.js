@@ -1,9 +1,10 @@
-angular.module("coupleFriends.LoginController", [])
+angular.module("thePen.LoginController", [])
 
-.controller("LoginController", function($scope, $interval, Auth){
-    $scope.loginData = {}
-    $scope.message = ""
-    $scope.currentPhoto = "resources/books.jpg"
+.controller("LoginController", function($state, $interval, Auth){
+    var vm = this;
+    vm.loginData = {}
+    vm.message = ""
+    vm.currentPhoto = "resources/books.jpg"
     // var currentPhotoIndex = 0;
     //maybe throw this into the node backend some how? start with a single image and then thrown the others across when the page is ready
     // var photos = [
@@ -19,49 +20,49 @@ angular.module("coupleFriends.LoginController", [])
     //     } else {
     //         currentPhotoIndex++
     //     }
-    //     $scope.currentPhoto = photos[currentPhotoIndex]
+    //     vm.currentPhoto = photos[currentPhotoIndex]
     // }, 3000)
 
 
-    $scope.createUser = function(){
-        if($scope.loginData.createUser){
+    vm.createUser = function(){
+        if(vm.loginData.createUser){
             checkLoginDetails()
 
-            Auth.createUser($scope.loginData)
+            Auth.createUser(vm.loginData)
             .then(function(response){
                 if(response["created"]){
                     console.log("logging in")
-                    $scope.loginUser()
+                    vm.loginUser()
                 } else {
-                    $scope.message = response.message
+                    vm.message = response.message
                 }
             })
         } else {
-            $scope.loginData.createUser = true
-            console.log($scope.loginData)
+            vm.loginData.createUser = true
+            console.log(vm.loginData)
         }
     }
     
 
-    $scope.loginUser = function () {
-        Auth.loginUser($scope.loginData)
+    vm.loginUser = function () {
+        Auth.loginUser(vm.loginData)
         .then(function (response) {
             if(response["loggedin"]){
                 // userData.updateUserData(response.userData)
                 console.log('loggedIn')
-                $location.path("/homepage")
+                $state.go('homepage')
             } else {
-                $scope.message = response.message
+                vm.message = response.message
             }
         })
     }
 
     var checkLoginDetails = function(){
-        console.log($scope.loginData)
-        if($scope.loginData.primaryEmail && $scope.loginData.password){
+        console.log(vm.loginData)
+        if(vm.loginData.primaryEmail && vm.loginData.password){
             //need additional checks for creating an account
-            if($scope.loginData.createUser){
-                if($scope.loginData.firstName1 && $scope.loginData.firstName1) {
+            if(vm.loginData.createUser){
+                if(vm.loginData.firstName1 && vm.loginData.firstName1) {
                     return true
                 }
             //if just login check then already passed

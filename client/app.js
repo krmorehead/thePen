@@ -1,29 +1,27 @@
-angular.module("coupleFriends",[
+angular.module("thePen",[
   // "teacherPortal.HomepageController",
   "ui.router",
   "angularMoment",
   'ngMaterial',
   'ngMessages',
-  "coupleFriends.Services",
-  "coupleFriends.LoginController"
+  "thePen.Services",
+  "thePen.LoginController"
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise("/login");
 
-
-
-  $stateProvider 
-  // .state("homepage" , {
-  //   url:"/homepage",
-  //   templateUrl: "homepage/homepage.html",
-  //   controller: "HomepageController"
+  // $stateProvider 
+  // // .state("homepage" , {
+  // //   url:"/homepage",
+  // //   templateUrl: "homepage/homepage.html",
+  // //   controller: "HomepageController"
+  // // })
+  // .state("login", {
+  //   url: "/login",
+  //   templateUrl:"login/login.html",
+  //   controller: "LoginController"
   // })
-  .state("login", {
-    url: "/login",
-    templateUrl:"login/login.html",
-    controller: "LoginController"
-  })
   // .state("homepage.assignment", {
   //   url:"/:id",
   // })

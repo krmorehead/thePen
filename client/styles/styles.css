@@ -1,6 +1,6 @@
 @font-face {
-    font-family:"EuphoriaScript-Regular";
-    src: url("../resources/fonts/EuphoriaScript-Regular.ttf") /* TTF file for CSS3 browsers */
+    font-family:"Playball-Regular";
+    src: url("../resources/fonts/Playball-Regular.ttf") /* TTF file for CSS3 browsers */
 }
 
 .red, button.red {
@@ -17,7 +17,7 @@
 
 body{
     background-color: rgb(80,80,80);
-    font-family: "EuphoriaScript-Regular";
+    font-family: "Playball-Regular";
     font-size:3vh;
     font-weight: bold;
     width: 100vw;

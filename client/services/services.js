@@ -1,4 +1,4 @@
-angular.module('coupleFriends.Services',[])
+angular.module('thePen.Services',[])
 
   .factory("Auth", function ($http) {
     var createUser = function(userData){

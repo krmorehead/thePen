@@ -1,6 +1,9 @@
 -- current update
 USE thePenMainDb;
 
+-- ALTER TABLE users Change firstName displayName varchar(200);
+ALTER TABLE users DROP COLUMN lastName;
+
 -- ALTER TABLE userSessions DROP COLUMN primaryEmail;
 -- ALTER TABLE userSessions ADD COLUMN userId int NOT NULL;
 -- ALTER TABLE users ADD COLUMN displayName varchar(200) NOT NULL;
