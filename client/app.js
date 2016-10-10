@@ -5,7 +5,8 @@ angular.module("thePen",[
   'ngMaterial',
   'ngMessages',
   "thePen.Services",
-  "thePen.LoginController"
+  "thePen.UserData",
+  "thePen.LoginController",
 ])
 
 .config(function($stateProvider, $urlRouterProvider){

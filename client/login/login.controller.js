@@ -1,6 +1,6 @@
 angular.module("thePen.LoginController", [])
 
-.controller("LoginController", function($state, $interval, Auth){
+.controller("LoginController", function($state, $interval, Auth, UserData){
     var vm = this;
     vm.loginData = {}
     vm.message = ""
@@ -48,9 +48,9 @@ angular.module("thePen.LoginController", [])
         Auth.loginUser(vm.loginData)
         .then(function (response) {
             if(response["loggedin"]){
-                // userData.updateUserData(response.userData)
-                console.log('loggedIn')
-                $state.go('homepage')
+                var userData = UserData.updateUserData(response.userData);
+                debugger;
+                $state.go('homepage', {displayUrl: userData.displayUrl});
             } else {
                 vm.message = response.message
             }
