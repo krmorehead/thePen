@@ -13,7 +13,9 @@
         // default settings
         var Settings = {
             menuBar: {
-                'background-color' : 'rgba(245, 241, 222, 0.8)'
+                'background-color' : 'rgba(245, 241, 222, 0.8)',
+                'color': 'rgb(20,20,20)',
+                'text-shadow': '4px 4px 2px rgba(200, 200, 200, 1)'
             },
             canvas: {
                 'background-image' : 'url("/resources/theWalk.jpg")'

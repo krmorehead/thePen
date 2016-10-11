@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 var connection = mysql.createConnection({
   user: "root",
-  password: "superNova",
+  password: "Kamnec1!",
   database: "thePenMainDb"
 });
 
