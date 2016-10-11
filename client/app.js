@@ -9,6 +9,7 @@ angular.module("thePen",[
   "thePen.LocalStorage",
   "thePen.LoginController",
   "thePen.HomepageCtrl",
+  "thePen.AboutMeCtrl",
   'thePen.LocalStorage',
   'thePen.Settings',
   'thePen.AuthorData'

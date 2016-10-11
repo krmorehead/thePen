@@ -4,7 +4,6 @@ angular.module("thePen.HomepageCtrl", [])
     var vm = this;
     vm.go = go;
 
-
     initialize()
 
     function initialize() {
