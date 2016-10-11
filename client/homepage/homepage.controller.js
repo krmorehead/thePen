@@ -1,6 +1,6 @@
 angular.module("thePen.HomepageCtrl", [])
 
-.controller("HomepageCtrl", function($stateParams, $interval, Auth, UserData){
+.controller("HomepageCtrl", function($stateParams, $interval, Auth, UserData, Settings, AuthorData){
     var vm = this;
 
 
@@ -8,12 +8,9 @@ angular.module("thePen.HomepageCtrl", [])
 
     function initialize() {
         vm.userData = UserData.getUserData();
+        vm.settings = Settings.getSettings();
 
-        if ($stateParams.displayUrl === user) {
-            vm.pageData = vm.userData;
-        } else {
-            vm.pageData = {diplayName: "stuff"}
-        }
+        vm.authorData = AuthorData.getAuthorData($stateParams.displayUrl)
     }
 
 })

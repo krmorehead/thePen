@@ -16,9 +16,9 @@
 
     function config($stateProvider) {
         $stateProvider.state("homepage", {
-            url: "/:displayUrl",
+            url: "/authors/:displayUrl",
             templateUrl:"homepage/homepage.html",
-            controller: "HomepageCtrl"
+            controller: "HomepageCtrl as vm"
         })
     }
 

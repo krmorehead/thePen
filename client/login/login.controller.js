@@ -49,7 +49,6 @@ angular.module("thePen.LoginController", [])
         .then(function (response) {
             if(response["loggedin"]){
                 var userData = UserData.updateUserData(response.userData);
-                debugger;
                 $state.go('homepage', {displayUrl: userData.displayUrl});
             } else {
                 vm.message = response.message

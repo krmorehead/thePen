@@ -1,5 +1,21 @@
-<md-content flex = "100" ng-style="{'background-image': 'url(' + currentPhoto + ')'}" class = "transistionFillBackground pageWra">
-    <h1>
-     Hello World
-    </h1>
+<md-content flex = "100" ng-style = "vm.settings.canvas" class = "transistionFillBackground" ng-cloak>
+    <div class="shadow">
+        <md-toolbar layout = "row" ng-style="vm.settings.menuBar">
+            <span flex></span>
+            <div layout = "column">
+                <h1 class = "center backgroundText">
+                    Hello {{vm.authorData.displayName}}
+                </h1>
+                <div layout = "row">
+                    <!-- tabs -->
+                    <md-button ng-repeat = "page in vm.authorData.pages">
+                        <label ng-style = "vm.settings.tabs">{{page.pageName}}</label>
+                    </md-button>
+                </div>
+            </div>
+            <span flex layout = "row">
+                <span flex></span>
+            </span>
+        </md-toolbar>
+    </div>
 </md-content>

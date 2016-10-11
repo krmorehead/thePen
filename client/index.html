@@ -1,22 +1,25 @@
 <html>
     <head>
-        <title>Couple Friends</title>
+        <title>The Pen</title>
         <link rel="stylesheet" href="libs/angular-material/angular-material.min.css">
         <link rel="stylesheet" href="styles/styles.css">
         <!-- documentation css -->
 
     </head>
-    <body ng-app = "thePen">
+    <body ng-app = "thePen" class = "noOverflow shadow">
 
-        <md-toolbar>
+<!--         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h1>
                     <span>The Pen</span>
                 </h1>
                 <span flex></span>
             </div>
-        </md-toolbar>
-        <div ui-view flex = "100"></div>
+        </md-toolbar> -->
+        <div layout = "column" >
+            <span flex = "5"></span>
+            <div ui-view flex = "100"></div>
+        </div>
 
         <!-- dependancies -->
         <script src = "libs/angular/angular.min.js"></script>
@@ -32,7 +35,10 @@
         <!-- app scripts -->
         <script src = "services/services.js"></script>
         <script src = "services/userData.service.js"></script>
-        
+        <script src = "services/localStore.service.js"></script>
+        <script src = "services/settings.service.js"></script>
+        <script src = "services/AuthorData.service.js"></script>
+
         <script src = "app.js"></script>
         <script src = "login/login.controller.js"></script>
         <script src = "login/login.js"></script>

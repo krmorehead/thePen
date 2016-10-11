@@ -6,7 +6,12 @@ angular.module("thePen",[
   'ngMessages',
   "thePen.Services",
   "thePen.UserData",
+  "thePen.LocalStorage",
   "thePen.LoginController",
+  "thePen.HomepageCtrl",
+  'thePen.LocalStorage',
+  'thePen.Settings',
+  'thePen.AuthorData'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
@@ -40,3 +45,4 @@ angular.module("thePen",[
   //   templateUrl: "docs/services.html"
   // })
 })
+
