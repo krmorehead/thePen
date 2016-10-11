@@ -17,16 +17,22 @@
                     pageName: 'About Me',
                     data: {
                         img: "avatar/blankAvatar.png"
-                    }
+                    },
+                    slug: 'aboutMe'
+
                 },
                 {
-                    pageName: 'Stories'
+                    pageName: 'Stories',
+                    slug: 'stories'
                 }, {
-                    pageName: 'Blog'
+                    pageName: 'Blog',
+                    slug: 'blog'
                 }, {
-                    pageName: 'News'
+                    pageName: 'News',
+                    slug: 'news'
                 }, {
-                    pageName: 'Contact'
+                    pageName: 'Contact',
+                    slug: 'contact'
                 }
             ]
         };
