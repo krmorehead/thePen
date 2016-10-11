@@ -52,7 +52,7 @@
 body{
     background-color: rgb(80,80,80);
     font-family: "Playball-Regular";
-    font-size:3vh;
+    font-size:3.5vh;
     font-weight: bold;
     width: 100vw;
     height: 100vh;
@@ -67,7 +67,8 @@ md-content{
     text-align: center;
 }
 
-.left{
+.fullWidth{
+    width: 100%
 }
 
 .noOverflow{
