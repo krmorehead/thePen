@@ -1,9 +1,15 @@
 <div layout = "row">
     <span flex></span>
-        <div layout = "column" flex ng-style = "vm.pageData.settings.body" class = "shadow">
+        <div layout = "column" ng-style = "vm.pageData.settings.body" class = "shadow padding">
             <div >
-                <h1>Hello</h1>
-                <h1>Hello</h1>
+                <h1 class = "center">{{vm.pageData.pageTitle}}</h1>
+                <p>
+                    <div layout= ""></div>
+                    <div class = "avatar">
+                        <img class = "boundImage" ng-src="{{vm.pageData.data.img}}">
+                    </div>
+                    {{vm.pageData.data.body}}
+                </p>
                 <h1>Hello</h1>
                 <h1>Hello</h1>
                 <h1>Hello</h1>
