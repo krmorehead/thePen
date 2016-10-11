@@ -7,9 +7,11 @@
             </h1>
             <div layout = "row">
                 <!-- tabs -->
+                <span flex></span>
                 <md-button ng-repeat = "page in vm.authorData.pages" ng-click = "vm.go(page.slug)">
                     <label ng-style = "vm.settings.tabs">{{page.pageName}}</label>
                 </md-button>
+                <span flex></span>
             </div>
         </div>
         <span flex layout = "row">
