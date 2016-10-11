@@ -59,7 +59,8 @@
                         'color': 'rgb(20,20,20)',
                         'text-shadow': '4px 4px 2px rgba(200, 200, 200, 1)',
                         'min-width': '30%',
-                        'max-width': '60%'
+                        'max-width': '60%',
+                        'border-radius': '10px'
                     }
                 },
                 slug: 'aboutMe'
