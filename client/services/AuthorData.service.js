@@ -14,7 +14,10 @@
         var AuthorData = {
             pages: [
                 {
-                    pageName: 'About Me'
+                    pageName: 'About Me',
+                    data: {
+                        img: "avatar/blankAvatar.png"
+                    }
                 },
                 {
                     pageName: 'Stories'

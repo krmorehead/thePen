@@ -17,7 +17,7 @@
     function config($stateProvider) {
         $stateProvider.state("login", {
             url: "/login",
-            templateUrl:"login/login.html",
+            templateUrl:"states/login/login.html",
             controller: "LoginController as vm"
         })
     }
