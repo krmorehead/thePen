@@ -11,7 +11,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height:90vh;
+    height:92vh;
     transition: background 1s ease-in-out;
 }
 
@@ -59,8 +59,7 @@ body{
 }
 
 md-content{
-    margin: 0 2% 0 2%;
-
+    margin: 2% 2% 0% 2%;
 }
 
 .center{
