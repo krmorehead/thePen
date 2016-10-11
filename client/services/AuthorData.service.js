@@ -13,7 +13,18 @@
         };
         // default AuthorData
         var AuthorData = {
+            displayName: 'Kyle',
             pages: [
+                {
+                    pageName: "Home",
+                    data: {
+
+                    },
+                    settings: {
+
+                    },
+                    slug: 'home'
+                },
                 {
                     pageName: 'About Me',
                     data: {
