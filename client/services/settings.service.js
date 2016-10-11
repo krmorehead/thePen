@@ -18,7 +18,8 @@
                 'text-shadow': '4px 4px 2px rgba(200, 200, 200, 1)'
             },
             canvas: {
-                'background-image' : 'url("/resources/theWalk.jpg")'
+                'background-image' : 'url("/resources/theWalk.jpg")',
+                'overflow' : 'hidden'
             }, 
             tabs: {
                 'color': 'rgb(20,20,20)',
