@@ -1,29 +1,27 @@
 <md-content flex = "100" ng-style = "vm.settings.canvas" class = "transistionFillBackground" ng-cloak>
-    <div class="shadow">
-        <div layout = "row" flex = "100" ng-style="vm.settings.menuBar" class = "shadow fullWidth">
-            <span flex></span>
-            <div layout = "column">
-                <h1 class = "center displayName">
-                    Hello {{vm.authorData.displayName}}
-                </h1>
-                <div layout = "row">
-                    <!-- tabs -->
-                    <md-button ng-repeat = "page in vm.authorData.pages" ng-click = "vm.go(page.slug)">
-                        <label ng-style = "vm.settings.tabs">{{page.pageName}}</label>
-                    </md-button>
-                </div>
-            </div>
-            <span flex layout = "row">
-                <span flex></span>
-            </span>
-        </div>
-
-        <md-toolbar ng-style = "{'background-color': 'transparent'}">
-            <span flex = "10"></span>
-        </md-toolbar>
+    <div flex = "100" ng-style="vm.settings.menuBar" class = "shadow">
+        <span flex></span>
         <div layout = "column">
-            <div ui-view class = "subState"></div>
+            <h1 class = "center displayName">
+                Hello {{vm.authorData.displayName}}
+            </h1>
+            <div layout = "row">
+                <!-- tabs -->
+                <md-button ng-repeat = "page in vm.authorData.pages" ng-click = "vm.go(page.slug)">
+                    <label ng-style = "vm.settings.tabs">{{page.pageName}}</label>
+                </md-button>
+            </div>
         </div>
-
+        <span flex layout = "row">
+            <span flex></span>
+        </span>
     </div>
+
+    <md-toolbar ng-style = "{'background-color': 'transparent'}">
+        <span flex = "10"></span>
+    </md-toolbar>
+    <div layout = "column">
+        <div ui-view class = "subState"></div>
+    </div>
+
 </md-content>
