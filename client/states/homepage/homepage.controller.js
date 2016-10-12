@@ -12,7 +12,8 @@ angular.module("thePen.HomepageCtrl", [])
 
         vm.authorData = AuthorData.getAuthorData($stateParams.displayUrl);
     }
-    function go(slug) {
-        $state.go("homepage." + slug);
+    function go(page) {
+        var state = page.template || page.slug;
+        $state.go("homepage." + page.template, {pages: page.slug});
     }
 })

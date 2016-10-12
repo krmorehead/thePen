@@ -29,13 +29,16 @@
                 buildAboutMePage(),
                 {
                     pageName: 'Stories',
+                    template: 'pages',
                     slug: 'stories'
                 }
                 , {
                     pageName: 'Blog',
+                    template: 'pages',
                     slug: 'blog'
                 }, {
                     pageName: 'News',
+                    template: 'pages',
                     slug: 'news'
                 }, {
                     pageName: 'Contact',
@@ -49,6 +52,7 @@
             customPage = customPage || {};
             var defaultPage = {
                 pageName: 'About Me',
+                template: 'pages',
                 pageTitle: 'About ' + userData.displayName,
                 sections: [{
                     img: userData.profile_photo || "resources/avatars/blankAvatar.png",
