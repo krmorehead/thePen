@@ -11,10 +11,10 @@
      
 
     function config($stateProvider) {
-        $stateProvider.state("homepage.aboutMe", {
-            url: "/aboutMe",
-            templateUrl:"states/pages/aboutMe.html",
-            controller: "AboutMeCtrl as vm"
+        $stateProvider.state("homepage.pages", {
+            url: "/:page",
+            templateUrl:"states/pages/pages.html",
+            controller: "StoriesCtrl as vm"
         })
     }
 

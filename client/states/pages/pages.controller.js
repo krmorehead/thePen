@@ -4,7 +4,7 @@ angular.module("thePen.StoriesCtrl", [])
 
 function StoriesCtrl($stateParams, $state, AuthorData, UserData){
     var vm = this;
-    vm.stateSlug = 'stories';
+    vm.stateSlug = $stateParams.page;
 
     initialize()
 
