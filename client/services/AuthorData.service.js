@@ -31,7 +31,8 @@
             {
                 pageName: 'Stories',
                 template: 'pages',
-                slug: 'stories'
+                slug: 'stories',
+                sections:[{}]
             }
             , {
                 pageName: 'Blog',

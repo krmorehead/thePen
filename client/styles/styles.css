@@ -66,6 +66,10 @@ md-content{
     text-align: center;
 }
 
+.text-left{
+    text-align: left;
+}
+
 .fullWidth{
     width: 100%
 }
