@@ -1,6 +1,10 @@
 <div layout = "row" class = "subState">
     <span flex></span>
         <div layout = "column" ng-style = "vm.pageData.settings.body" class = "shadow padding">
+            <div layout = "row" class = "toolbar" ng-if = "vm.onOwnPage">
+                <span flex></span>
+                <label class = "tools">Edit</label>
+            </div>
             <h1 class = "center">{{vm.pageData.pageTitle}}</h1>
 
             <div ng-repeat = "section in vm.pageData.sections track by $index">
