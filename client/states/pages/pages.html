@@ -30,6 +30,7 @@
                     <div class = "avatar" ng-if = "section.img && !vm.editMode">
                         <img class = "boundImage" ng-src="{{section.img}}">
                     </div>
+                    <label class = "tools" ng-if = "vm.editMode">Add an Image</label>
                     <p ng-if = "section.paragraphs && !vm.editMode" ng-repeat = "paragraph in section.paragraphs track by $index">
                         {{paragraph}}
                     </p>
