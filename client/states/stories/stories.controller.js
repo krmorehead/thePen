@@ -1,10 +1,10 @@
-angular.module("thePen.AboutMeCtrl", [])
+angular.module("thePen.StoriesCtrl", [])
 
-.controller("AboutMeCtrl", AboutMeCtrl);
+.controller("StoriesCtrl", StoriesCtrl);
 
-function AboutMeCtrl($stateParams, $state, AuthorData, UserData){
+function StoriesCtrl($stateParams, $state, AuthorData, UserData){
     var vm = this;
-    vm.stateSlug = 'aboutMe';
+    vm.stateSlug = 'stories';
 
     initialize()
 

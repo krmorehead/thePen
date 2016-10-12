@@ -1,14 +1,17 @@
 <div layout = "row" class = "subState">
     <span flex></span>
         <div layout = "column" ng-style = "vm.pageData.settings.body" class = "shadow padding">
-            <div >
-                <h1 class = "center">{{vm.pageData.pageTitle}}</h1>
+            <h1 class = "center">{{vm.pageData.pageTitle}}</h1>
+
+            <div ng-repeat = "section in vm.pageData.sections track by $index">
+                <h1 class = "center" ng-if = "section.title">{{section.title}}</h1>
                 <p>
-                    <div layout= ""></div>
-                    <div class = "avatar">
-                        <img class = "boundImage" ng-src="{{vm.pageData.data.img}}">
+                    <div class = "avatar" ng-if = "section.img">
+                        <img class = "boundImage" ng-src="{{section.img}}">
                     </div>
-                    {{vm.pageData.data.body}}
+                    <p ng-if = "section.paragraphs" ng-repeat = "paragraph in section.paragraphs track by $index">
+                        {{paragraph}}
+                    </p>
                 </p>
             </div>
         </div>

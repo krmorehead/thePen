@@ -7,7 +7,6 @@
     //  * # Home Route
     //  * _URL:_ `/`
     //  *
-    //  * _Directory:_ `app/states/home/home.html`
     //  *
     //  * **Landing page after user login,
     //  * or when the home button is pressed.**

@@ -10,6 +10,7 @@ angular.module("thePen",[
   "thePen.LoginController",
   "thePen.HomepageCtrl",
   "thePen.AboutMeCtrl",
+  "thePen.StoriesCtrl",
   'thePen.LocalStorage',
   'thePen.Settings',
   'thePen.AuthorData'

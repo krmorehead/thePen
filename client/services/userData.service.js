@@ -10,7 +10,7 @@
             getUserData: getUserData,
             updateUserData: updateUserData
         };
-        var userData = LocalStorage.getLocalStore('userData') || {} 
+        var userData = LocalStorage.getLocalStore('userData') || {} ;
 
         function getUserData() {
             return userData;
