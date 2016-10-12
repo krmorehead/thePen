@@ -14,6 +14,6 @@ angular.module("thePen.HomepageCtrl", [])
     }
     function go(page) {
         var state = page.template || page.slug;
-        $state.go("homepage." + page.template, {pages: page.slug});
+        $state.go("homepage." + page.template, {page: page.slug});
     }
 })

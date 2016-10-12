@@ -12,8 +12,8 @@
 
     function config($stateProvider) {
         $stateProvider.state("homepage.pages", {
-            url: "/:pages",
-            templateUrl:"states/aboutMe/aboutMe.html",
+            url: "/:page",
+            templateUrl:"states/pages/aboutMe.html",
             controller: "StoriesCtrl as vm"
         })
     }

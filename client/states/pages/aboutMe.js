@@ -13,7 +13,7 @@
     function config($stateProvider) {
         $stateProvider.state("homepage.aboutMe", {
             url: "/aboutMe",
-            templateUrl:"states/aboutMe/aboutMe.html",
+            templateUrl:"states/pages/aboutMe.html",
             controller: "AboutMeCtrl as vm"
         })
     }
