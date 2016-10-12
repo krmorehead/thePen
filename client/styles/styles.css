@@ -94,3 +94,9 @@ md-content{
     max-width:20vw;
     max-height:20vw;
 }
+
+.menuFill{
+    min-height: 60px;
+    max-height: 230px;
+    height: 25%;
+}

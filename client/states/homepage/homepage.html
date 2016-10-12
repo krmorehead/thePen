@@ -1,5 +1,5 @@
 <md-content flex = "100" ng-style = "vm.settings.canvas" class = "transistionFillBackground shadow" ng-cloak>
-    <div flex = "100" ng-style="vm.settings.menuBar" class = "shadow">
+    <div flex = "100" ng-style="vm.settings.menuBar" class = "shadow" id = "menu">
         <span flex></span>
         <div layout = "column">
             <h1 class = "center displayName">
@@ -8,8 +8,8 @@
             <div layout = "row">
                 <!-- tabs -->
                 <span flex></span>
-                <md-button ng-repeat = "page in vm.authorData.pages" ng-click = "vm.go(page.slug)">
-                    <label ng-style = "vm.settings.tabs">{{page.pageName}}</label>
+                <md-button ng-repeat = "page in vm.authorData.pages" ng-click = "vm.go(page.slug)" ng-style= "vm.settings.tabs">
+                    <label>{{page.pageName}}</label>
                 </md-button>
                 <span flex></span>
             </div>
@@ -19,9 +19,10 @@
         </span>
     </div>
 
-    <md-toolbar ng-style = "{'background-color': 'transparent'}">
-        <span flex = "20"></span>
-    </md-toolbar>
+    <div class = "menuFill">
+    </div>
+
+
     <div layout = "column">
         <div ui-view class = "subState"></div>
     </div>
