@@ -3,21 +3,53 @@
         <div layout = "column" ng-style = "vm.pageData.settings.body" class = "shadow padding">
             <div layout = "row" class = "toolbar" ng-if = "vm.onOwnPage">
                 <span flex></span>
-                <label class = "tools">Edit</label>
+                <label class = "tools" ng-if = "vm.editMode === false" ng-click = "vm.editMode = true">Edit</label>
+                <label class = "tools" ng-if = "vm.editMode" ng-click = "vm.editMode = false">Preview</label>
             </div>
+
             <h1 class = "center">{{vm.pageData.pageTitle}}</h1>
+            <!-- Edit Mode -->
+            <md-input-container ng-if = "vm.editMode">
+              <label>Page Title</label>
+              <textarea type="text" ng-model="vm.pageData.pageTitle" class = "center"></textarea>
+            </md-input-container>
 
             <div ng-repeat = "section in vm.pageData.sections track by $index">
-                <h1 class = "center" ng-if = "section.title">{{section.title}}</h1>
-                <p>
-                    <div class = "avatar" ng-if = "section.img">
+
+                <h1 ng-if = "!vm.editMode" class = "center" ng-if = "section.title">{{section.title}}</h1>
+                <!-- Edit Mode -->
+                <div ng-if = "vm.editMode">
+                    <md-input-container>
+                      <label>Section Title</label>
+                      <textarea type="text" ng-model="section.title" class = "center"></textarea>
+                    </md-input-container>
+                </div>
+                <br>
+
+                <p ng-if = "!vm.editMode">
+                    <div class = "avatar" ng-if = "section.img && !vm.editMode">
                         <img class = "boundImage" ng-src="{{section.img}}">
                     </div>
-                    <p ng-if = "section.paragraphs" ng-repeat = "paragraph in section.paragraphs track by $index">
+                    <p ng-if = "section.paragraphs && !vm.editMode" ng-repeat = "paragraph in section.paragraphs track by $index">
                         {{paragraph}}
                     </p>
                 </p>
+                <!-- Edit Mode -->
+                <md-input-container ng-if = "vm.editMode" class = "bodyInput">
+                  <label>Body</label>
+                  <textarea type="text" ng-model="section.paragraphs" class = "center"></textarea>
+                </md-input-container>
+
             </div>
         </div>
     <span flex></span>
 </div>
+
+
+
+
+
+
+
+
+

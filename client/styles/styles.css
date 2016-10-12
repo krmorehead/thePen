@@ -101,6 +101,10 @@ md-content{
     height: 25%;
 }
 
+.bodyInput{
+    width: 50vw;
+}
+
 .tools{
     display: inline-block;
     font-size: 2vh;

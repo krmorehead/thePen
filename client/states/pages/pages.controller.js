@@ -5,6 +5,7 @@ angular.module("thePen.StoriesCtrl", [])
 function StoriesCtrl($stateParams, $state, AuthorData, UserData){
     var vm = this;
     vm.stateSlug = $stateParams.page;
+    vm.editMode = false;
 
     initialize()
 
