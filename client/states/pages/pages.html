@@ -7,7 +7,7 @@
                 <label class = "tools" ng-if = "vm.editMode" ng-click = "vm.editMode = false">Preview</label>
             </div>
 
-            <h1 class = "center">{{vm.pageData.pageTitle}}</h1>
+            <h1 class = "center" ng-if = "!vm.editMode">{{vm.pageData.pageTitle}}</h1>
             <!-- Edit Mode -->
             <md-input-container ng-if = "vm.editMode">
               <label>Page Title</label>
@@ -23,8 +23,8 @@
                       <label>Section Title</label>
                       <textarea type="text" ng-model="section.title" class = "center"></textarea>
                     </md-input-container>
-                </div>
                 <br>
+                </div>
 
                 <p ng-if = "!vm.editMode">
                     <div class = "avatar" ng-if = "section.img && !vm.editMode">
@@ -38,7 +38,7 @@
                 <!-- Edit Mode -->
                 <md-input-container ng-if = "vm.editMode" class = "bodyInput">
                   <label>Body</label>
-                  <textarea type="text" ng-model="section.paragraphs" class = "center text-left"></textarea>
+                  <textarea type="text" ng-model="section.text" class = "center text-left"></textarea>
                   <br>
                   <br>
                   <br>
