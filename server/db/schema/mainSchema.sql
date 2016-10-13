@@ -12,6 +12,15 @@ CREATE TABLE authors (
   password varchar(200) NOT NULL
 );
 
+CREATE TABLE pages(
+  id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (id),
+  slug varchar(50) NOT NULL,
+  displayUrl varchar(200) NOT NULL,
+  FOREIGN KEY(displayUrl) REFERENCES authors(displayUrl),
+  pageData JSON DEFAULT NULL
+);
+
 -- CREATE TABLE matches (
 --   -- a table for matches, histrical data can be added in future
 --   id int NOT NULL AUTO_INCREMENT,
@@ -21,9 +30,3 @@ CREATE TABLE authors (
 --   userId2 int,
 --   FOREIGN KEY(userId2) REFERENCES users(id)
 -- )
-
--- CREATE TABLE (
---   id int NOT NULL AUTO_INCREMENT,
---   PRIMARY KEY (ID),
---   locataion varchar(50) NOT NULL
--- ),
