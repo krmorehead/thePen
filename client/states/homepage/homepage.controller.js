@@ -1,6 +1,7 @@
 angular.module("thePen.HomepageCtrl", [])
 
-.controller("HomepageCtrl", function($stateParams, $interval, $state, $document, Auth, UserData, Settings, AuthorData){
+.controller("HomepageCtrl", function($stateParams, $interval, $state, $document, Auth, UserData, Settings, AuthorData,
+                                    AuthorDataApi){
     var vm = this;
     vm.go = go;
 

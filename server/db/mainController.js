@@ -19,7 +19,7 @@ connection.connect(function(err){
 
 //<h3>addAuthor</h3>
 
-//Takes a AuthorObj with at least firstName1, firstName2, primaryEmail, location, and password
+//Takes a AuthorObj with at least firstName1, firstName2, location, and password
 var addAuthor = function (AuthorObj, callback) {
   connection.query('INSERT INTO Authors SET ?', AuthorObj, function(err, res){
     if(err){
@@ -32,35 +32,36 @@ var addAuthor = function (AuthorObj, callback) {
   })
 }
 
-//<h3>findAuthor</h3>
+//<h3>getAuthor</h3>
 
 //Finds a Author based on the displayUrl and password inserted
 //returns an array of obj's (should only be one) usefull for login
-var findAuthor = function(displayUrl, password, callback){
+var getAuthor = function(displayUrl, password, callback){
   connection.query('SELECT * FROM Authors where displayUrl=? and password=?', [displayUrl, password], function(err, rows){
     if(err){
       console.log("Error finding Author by displayUrl :", err)
       callback(err, null);
     } else{
-      callback(null, rows);
+      callback(null, rows[0]);
     }
   })
 }
 
-var findAuthorByPrimaryEmail = function(primaryEmail, callback){
-  connection.query('SELECT * FROM Authors where primaryEmail=?', [primaryEmail], function(err, rows){
+var getAuthorByDisplayUrl = function(displayUrl, callback){
+  connection.query('SELECT * FROM Authors where displayUrl=?', [displayUrl], function(err, rows){
     if(err){
-      console.log("Error in controllers.js finding Author by primaryEmail :", err)
+      console.log("Error in controllers.js finding Author by displayUrl :", err)
       callback(err, null);
     } else{
-      callback(null, rows);
+      delete rows[0].password;
+      callback(null, rows[0]);
     }
   })
 }
-//<h3>findAuthorByPartial</h3>
+//<h3>getAuthorByPartial</h3>
 
 //Finds a Author by providing partial displayUrl information. Used in search
-var findAuthorsByPartial = function(string, callback){
+var getAuthorsByPartial = function(string, callback){
   string+= "%"
   connection.query('SELECT * FROM Authors n displayUrl LIKE ?', string, function(err, rows){
     // just do callback(err, Author)
@@ -73,11 +74,11 @@ var findAuthorsByPartial = function(string, callback){
   })
 }
 
-//<h3>findAuthorById</h3>
+//<h3>getAuthorById</h3>
 
 //Finds the Author by id, useful for buy/sell events
 //returns an array of obj's (should only be one)
-var findAuthorById = function(AuthorId, callback){
+var getAuthorById = function(AuthorId, callback){
   connection.query('SELECT * FROM Authors WHERE id=?', [AuthorId], function(err, rows){
     if(err){
       console.log("Error finding Author by id :", err)
@@ -88,11 +89,11 @@ var findAuthorById = function(AuthorId, callback){
   })
 }
 
-//<h3>findAuthorByFbKey</h3>
+//<h3>getAuthorByFbKey</h3>
 
 //Finds the Author by facebookKey, useful for buy/sell events
 //returns an array of obj's (should only be one)
-var findAuthorByFbKey = function(fbKey, callback){
+var getAuthorByFbKey = function(fbKey, callback){
   connection.query('SELECT * FROM Authors WHERE facebookKey=?', [fbKey], function(err, rows){
     if(err){
       console.log("Error finding Author by facebookKey :", err)
@@ -156,7 +157,7 @@ var getTopAuthors = function(limit, callback) {
 //newAuthorObj must have Author_id and the new properties
 var updateAuthor = function(newAuthorObj, callback){
   var Author_id = newAuthorObj.id
-  findAuthorById(Author_id, function(err, AuthorObj){
+  getAuthorById(Author_id, function(err, AuthorObj){
     AuthorObj = AuthorObj[0]
     _.extend(AuthorObj, newAuthorObj)
     connection.query('UPDATE Authors SET ? Where ID = ?',[AuthorObj, Author_id], function (err, result) {
@@ -211,9 +212,9 @@ module.exports = {
   connection: connection,
   //Author methods
   addAuthor: addAuthor,
-  findAuthor: findAuthor,
-  findAuthorById: findAuthorById,
+  getAuthor: getAuthor,
+  getAuthorById: getAuthorById,
   updateAuthor: updateAuthor,
   deleteAuthor: deleteAuthor,
-  findAuthorByPrimaryEmail : findAuthorByPrimaryEmail
+  getAuthorByDisplayUrl : getAuthorByDisplayUrl
 };

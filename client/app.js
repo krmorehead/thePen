@@ -12,7 +12,8 @@ angular.module("thePen",[
   "thePen.StoriesCtrl",
   'thePen.LocalStorage',
   'thePen.Settings',
-  'thePen.AuthorData'
+  'thePen.AuthorData',
+  'thePen.AuthorDataApi'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){

@@ -1,6 +1,7 @@
 var mainController = require('./db/mainController')
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var Q = require('q');
 
 module.exports = function (app, express) {
 
@@ -37,31 +38,40 @@ module.exports = function (app, express) {
     })
 
     app.post('/createAuthor', function (req, res) {
-    mainController.findAuthorByPrimaryEmail(req.body.primaryEmail, function (err, response){
-        if(err){
-            console.log("Error in router finding Author by primaryEmail")
-        } else {
-            if(response.length){
-                res.send({created:false, message: "I'm sorry that Email already has an account"})
+        mainController.findAuthorByPrimaryEmail(req.body.primaryEmail, function (err, response){
+            if(err){
+                console.log("Error in router finding Author by primaryEmail")
             } else {
-                bcrypt.hash(req.body.password, 13, function(err, hash) {
-                    if(err){
-                        console.log("Error hashing password", err)
-                    } else {
-                        req.body.password = hash
-                        mainController.addAuthor(req.body, function (err, response){
-                            if(err){
-                                console.log("Error in router creating new Author", req.body)
-                            } else {
-                                res.send({created:true})
-                            }
-                        })
-                    }
-                })
+                if(response.length){
+                    res.send({created:false, message: "I'm sorry that Email already has an account"})
+                } else {
+                    bcrypt.hash(req.body.password, 13, function(err, hash) {
+                        if(err){
+                            console.log("Error hashing password", err)
+                        } else {
+                            req.body.password = hash
+                            mainController.addAuthor(req.body, function (err, response){
+                                if(err){
+                                    console.log("Error in router creating new Author", req.body)
+                                } else {
+                                    res.send({created:true})
+                                }
+                            })
+                        }
+                    })
+                }
             }
-        }
 
-        // res.send({created:false, message: "Error creating Author. Please try again"})
+            // res.send({created:false, message: "Error creating Author. Please try again"})
+        })
     })
-})
+
+    app.get('/getAuthor/:displayUrl', function (req, res) {
+        var displayUrl = req.params.displayUrl;
+
+        Q.nfcall(mainController.getAuthorByDisplayUrl, displayUrl)
+        .then(function (authorData) {
+            res.send(authorData)
+        })
+    })
 }
