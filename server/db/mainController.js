@@ -78,16 +78,30 @@ var getAuthorsByPartial = function(string, callback){
 
 //Finds the Author by id, useful for buy/sell events
 //returns an array of obj's (should only be one)
-var getAuthorById = function(AuthorId, callback){
-  connection.query('SELECT * FROM Authors WHERE id=?', [AuthorId], function(err, rows){
-    if(err){
-      console.log("Error finding Author by id :", err)
+var getAuthorPages = function(displayUrl, callback){
+  connection.query('SELECT * FROM pages WHERE displayUrl=?', [displayUrl], function (err, rows){
+    if (err) {
+      console.log("Error finding Author pages by displayUrl :", err)
       callback(err,null);
     } else {
       callback(null,rows);
     }
   })
 }
+
+
+var addAuthorPage = function (newAuthorPage, callback) {
+  newAuthorPage.pageData = JSON.stringify(newAuthorPage.pageData) || '{}'
+  connection.query('Insert Into Pages Set ?', newAuthorPage, function (err, result) {
+    if (err) {
+      console.log("Error inserting Author page:", err)
+      callback(err,null);
+    } else {
+      callback(null,result);
+    }    
+  })
+}
+
 
 //<h3>getAuthorByFbKey</h3>
 
@@ -136,60 +150,27 @@ var getAllAuthors = function(callback){
   })
 }
 
-//<h3>getTopAuthors</h3>
-
-// Returns array of top n Authors, ranked by current score
-var getTopAuthors = function(limit, callback) {
-  connection.query('SELECT * FROM Authors ORDER BY currentScore DESC LIMIT ?',limit, function(err, res) {
-    if (err) {
-      console.log('Error finding all Authors sorted by current score');
-      callback(err, null);
-    } else {
-      callback(null, res);
-    }
-  })
-}
-
 //<h3>updateAuthor</h3>
 
 //Even though this leverages two controller methods since it is
 //essentially just an update it is here.
-//newAuthorObj must have Author_id and the new properties
+//newAuthorObj must have Author_displayUrl and the new properties
 var updateAuthor = function(newAuthorObj, callback){
-  var Author_id = newAuthorObj.id
-  getAuthorById(Author_id, function(err, AuthorObj){
+  var displayUrl = newAuthorObj.displayUrl
+  getAuthor(displayUrl, function(err, AuthorObj){
     AuthorObj = AuthorObj[0]
     _.extend(AuthorObj, newAuthorObj)
-    connection.query('UPDATE Authors SET ? Where ID = ?',[AuthorObj, Author_id], function (err, result) {
+    connection.query('UPDATE Authors SET ? Where displayUrl = ?',[AuthorObj, displayUrl], function (err, result) {
         if (err){
-          console.log("Error updating Author # " + Author_id)
+          console.log("Error updating Author # " + displayUrl)
           callback(err, null)
         } else{
-          console.log('Updated Author ' + Author_id);
+          console.log('Updated Author ' + displayUrl);
           callback(null, AuthorObj);
         }
       }
     );
   })
-}
-
-//<h3>updateKarma</h3>
-
-//Updates the karma of a specified Author this is kept as a
-//seperate function because it utilized the difference rather
-//than just overwriting the property, this leads to fewer
-//db interactions. It CAN accept a negative value for karmaChange
-var updateKarma = function(AuthorId, karmaChange, callback){
-  connection.query('UPDATE Authors SET karma = karma +? Where ID = ?',[karmaChange, AuthorId], function (err, result) {
-      if (err){
-        console.log("Error updating Karma of AuthorId " + AuthorId)
-        callback(err, null)
-      } else{
-        console.log('Changed Author ' + AuthorId + '\'s karma by ' + karmaChange);
-        callback(null, AuthorId);
-      }
-    }
-  );
 }
 
 //<h3>deleteAuthor</h3>
@@ -213,7 +194,7 @@ module.exports = {
   //Author methods
   addAuthor: addAuthor,
   getAuthor: getAuthor,
-  getAuthorById: getAuthorById,
+  getAuthorPages: getAuthorPages,
   updateAuthor: updateAuthor,
   deleteAuthor: deleteAuthor,
   getAuthorByDisplayUrl : getAuthorByDisplayUrl
