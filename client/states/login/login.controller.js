@@ -5,6 +5,7 @@ angular.module("thePen.LoginController", [])
     vm.loginData = {}
     vm.message = ""
     vm.currentPhoto = "resources/books.jpg"
+    vm.loginData.createUser = false;
     // var currentPhotoIndex = 0;
     //maybe throw this into the node backend some how? start with a single image and then thrown the others across when the page is ready
     // var photos = [

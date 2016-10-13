@@ -1,13 +1,12 @@
 angular.module('thePen.Services',[])
 
     .factory("Auth", function ($http) {
-        var createUser = function(userData){
-            delete userData.createUser
-            console.log(userData, "userdata")
+        var createUser = function(authorData){
+            delete authorData.createUser
             return $http({
                 method: "POST",
-                url: "/createUser",
-                data: userData
+                url: "/createAuthor",
+                data: authorData
             }).then(function (response){
                 return response.data
             })

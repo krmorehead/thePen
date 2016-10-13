@@ -52,9 +52,11 @@
                             </div>
                         </md-input-container> 
 
-                        <md-button class="loginBtns md-raised" ng-click = "vm.loginUser()">Login</md-button>
-                        <md-button class="loginBtns md-raised">Login With Facebook</md-button>
+                        <md-button ng-if = "!vm.loginData.createUser" class="loginBtns md-raised" ng-click = "vm.loginUser()">Login</md-button>
+                        <md-button ng-if = "!vm.loginData.createUser"  class="loginBtns md-raised">Login With Facebook</md-button>
                         <md-button class="loginBtns md-raised" ng-click = "vm.createUser();">Create An Account</md-button>
+                        <md-button ng-if = "vm.loginData.createUser"class="loginBtns md-raised"
+                                   ng-click = "vm.loginData.createUser = false">Back</md-button>
                     </section> 
                 </form>
             </div>
