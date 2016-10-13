@@ -49,7 +49,7 @@
 }
 
 
-body{
+body, html{
     background-color: rgb(80,80,80);
     font-family: "Playball-Regular";
     font-size:3.5vh;

@@ -1,6 +1,8 @@
 <div layout = "row" class = "subState">
     <span flex></span>
         <div layout = "column" ng-style = "vm.pageData.settings.body" class = "shadow padding">
+            <div ng-class = "vm.pageData.settings.header.class"
+                 ng-style = "vm.pageData.settings.header.styles">
             <div layout = "row" class = "toolbar" ng-if = "vm.onOwnPage">
                 <span flex></span>
                 <label class = "tools" ng-if = "vm.editMode === false" ng-click = "vm.editMode = true">Edit</label>
@@ -13,10 +15,13 @@
               <label>Page Title</label>
               <textarea type="text" ng-model="vm.pageData.pageTitle" class = "center"></textarea>
             </md-input-container>
+            </div>
 
-            <div ng-repeat = "section in vm.pageData.sections track by $index">
+            <div ng-repeat = "section in vm.pageData.sections track by $index" 
+                ng-class = "vm.pageData.settings.paragraphs.class"
+                ng-style = "vm.pageData.settings.paragraphs.styles">
 
-                <h1 ng-if = "!vm.editMode" class = "center" ng-if = "section.title">{{section.title}}</h1>
+                <h2 ng-if = "!vm.editMode" class = "center" ng-if = "section.title">{{section.title}}</h2>
                 <!-- Edit Mode -->
                 <div ng-if = "vm.editMode">
                     <md-input-container>
