@@ -5,7 +5,7 @@
         .factory("AuthorData", AuthorData);
 
 
-    function AuthorData(LocalStorage) {
+    function AuthorData(LocalStorage, AuthorDataApi) {
         var factory = {
             getPageData: getPageData,
             getAuthorData: getAuthorData,
@@ -61,6 +61,8 @@
                 return page
             }
         });
+
+        AuthorDataApi.addPages(AuthorData.displayUrl, AuthorData.pages)
 
 
         function buildPage(customPage) {

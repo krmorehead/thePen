@@ -7,13 +7,27 @@
 
     function AuthorDataApi($http) {
         var factory = {
-            getAuthorData: getAuthorData
+            getAuthorData: getAuthorData,
+            addPages: addPages
         };
 
-        function getAuthorData (displayUrl){
+        function getAuthorData(displayUrl){
             return $http({
                 method: "get",
                 url: "/getAuthor/" + displayUrl,
+            }).then(function (response){
+                return response.data
+            })
+        }
+
+        function addPages(displayUrl, pages) {
+            return $http({
+                method: "POST",
+                url: "/addPages",
+                data: {
+                    displayUrl: displayUrl,
+                    pages: pages
+                }
             }).then(function (response){
                 return response.data
             })

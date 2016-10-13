@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 var connection = mysql.createConnection({
   user: "root",
-  password: "superNova",
+  password: "Kamnec1!",
   database: "thePenMainDb"
 });
 
@@ -176,7 +176,7 @@ var updateAuthor = function(newAuthorObj, callback){
 //<h3>deleteAuthor</h3>
 //Deletes a Author specified by a AuthorId
 var deleteAuthor = function(AuthorId, callback){
-  connection.query('DELETE FROM Authors WHERE id = ?',AuthorId, function (err, response) {
+  connection.query('DELETE FROM Authors WHERE displayUrl = ?',AuthorId, function (err, response) {
     if (err) {
       console.log("error deleting Author " + AuthorId, err)
       callback(err, null)

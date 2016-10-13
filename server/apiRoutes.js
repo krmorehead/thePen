@@ -5,6 +5,27 @@ var Q = require('q');
 
 module.exports = function (app, express) {
 
+    app.get('/getAuthor/:displayUrl', function (req, res) {
+        var displayUrl = req.params.displayUrl;
+
+        Q.nfcall(mainController.getAuthorByDisplayUrl, displayUrl)
+        .then(function (authorData) {
+            res.send(authorData)
+        })
+    })
+
+    app.post('/addPages', function (req, res) {
+        var displayUrl = req.body.displayUrl;
+        var pages = req.body.pages;
+        console.log(req.body);
+
+        // Q.nfapply(mainController.addPages, [displayUrl, pages])
+        // .then(function (response) {
+        //     console.log(response);
+        //     res.send(200)
+        // })
+    })
+
     app.post('/login', function (req, res) {
         mainController.findAuthorByPrimaryEmail(req.body.primaryEmail, function (err, response) {
             if(err){
@@ -63,15 +84,6 @@ module.exports = function (app, express) {
             }
 
             // res.send({created:false, message: "Error creating Author. Please try again"})
-        })
-    })
-
-    app.get('/getAuthor/:displayUrl', function (req, res) {
-        var displayUrl = req.params.displayUrl;
-
-        Q.nfcall(mainController.getAuthorByDisplayUrl, displayUrl)
-        .then(function (authorData) {
-            res.send(authorData)
         })
     })
 }
