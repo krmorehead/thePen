@@ -15,15 +15,15 @@ connection.connect(function(err){
   console.log('Connected to Main Db')
 });
 
-//<h2> User database functions </h2>
+//<h2> Author database functions </h2>
 
-//<h3>addUser</h3>
+//<h3>addAuthor</h3>
 
-//Takes a userObj with at least firstName1, firstName2, primaryEmail, location, and password
-var addUser = function (userObj, callback) {
-  connection.query('INSERT INTO users SET ?', userObj, function(err, res){
+//Takes a AuthorObj with at least firstName1, firstName2, primaryEmail, location, and password
+var addAuthor = function (AuthorObj, callback) {
+  connection.query('INSERT INTO Authors SET ?', AuthorObj, function(err, res){
     if(err){
-      console.log("error inserting into users", err)
+      console.log("error inserting into Authors", err)
       callback(err, null)
     } else{
       console.log("last inserted Id: ", res.insertId);
@@ -32,14 +32,14 @@ var addUser = function (userObj, callback) {
   })
 }
 
-//<h3>findUser</h3>
+//<h3>findAuthor</h3>
 
-//Finds a user based on the name and password inserted
+//Finds a Author based on the displayUrl and password inserted
 //returns an array of obj's (should only be one) usefull for login
-var findUser = function(name, password, callback){
-  connection.query('SELECT * FROM users where name=? and password=?', [name, password], function(err, rows){
+var findAuthor = function(displayUrl, password, callback){
+  connection.query('SELECT * FROM Authors where displayUrl=? and password=?', [displayUrl, password], function(err, rows){
     if(err){
-      console.log("Error finding user by name :", err)
+      console.log("Error finding Author by displayUrl :", err)
       callback(err, null);
     } else{
       callback(null, rows);
@@ -47,25 +47,25 @@ var findUser = function(name, password, callback){
   })
 }
 
-var findUserByPrimaryEmail = function(primaryEmail, callback){
-  connection.query('SELECT * FROM users where primaryEmail=?', [primaryEmail], function(err, rows){
+var findAuthorByPrimaryEmail = function(primaryEmail, callback){
+  connection.query('SELECT * FROM Authors where primaryEmail=?', [primaryEmail], function(err, rows){
     if(err){
-      console.log("Error in controllers.js finding user by primaryEmail :", err)
+      console.log("Error in controllers.js finding Author by primaryEmail :", err)
       callback(err, null);
     } else{
       callback(null, rows);
     }
   })
 }
-//<h3>findUserByPartial</h3>
+//<h3>findAuthorByPartial</h3>
 
-//Finds a user by providing partial name information. Used in search
-var findUsersByPartial = function(string, callback){
+//Finds a Author by providing partial displayUrl information. Used in search
+var findAuthorsByPartial = function(string, callback){
   string+= "%"
-  connection.query('SELECT * FROM users WHERE name LIKE ?', string, function(err, rows){
-    // just do callback(err, user)
+  connection.query('SELECT * FROM Authors n displayUrl LIKE ?', string, function(err, rows){
+    // just do callback(err, Author)
     if(err){
-      console.log("Error finding user by partial :", err)
+      console.log("Error finding Author by partial :", err)
       callback(err, null);
     } else{
       callback(null, rows);
@@ -73,14 +73,14 @@ var findUsersByPartial = function(string, callback){
   })
 }
 
-//<h3>findUserById</h3>
+//<h3>findAuthorById</h3>
 
-//Finds the user by id, useful for buy/sell events
+//Finds the Author by id, useful for buy/sell events
 //returns an array of obj's (should only be one)
-var findUserById = function(userId, callback){
-  connection.query('SELECT * FROM users WHERE id=?', [userId], function(err, rows){
+var findAuthorById = function(AuthorId, callback){
+  connection.query('SELECT * FROM Authors WHERE id=?', [AuthorId], function(err, rows){
     if(err){
-      console.log("Error finding user by id :", err)
+      console.log("Error finding Author by id :", err)
       callback(err,null);
     } else {
       callback(null,rows);
@@ -88,14 +88,14 @@ var findUserById = function(userId, callback){
   })
 }
 
-//<h3>findUserByFbKey</h3>
+//<h3>findAuthorByFbKey</h3>
 
-//Finds the user by facebookKey, useful for buy/sell events
+//Finds the Author by facebookKey, useful for buy/sell events
 //returns an array of obj's (should only be one)
-var findUserByFbKey = function(fbKey, callback){
-  connection.query('SELECT * FROM users WHERE facebookKey=?', [fbKey], function(err, rows){
+var findAuthorByFbKey = function(fbKey, callback){
+  connection.query('SELECT * FROM Authors WHERE facebookKey=?', [fbKey], function(err, rows){
     if(err){
-      console.log("Error finding user by facebookKey :", err)
+      console.log("Error finding Author by facebookKey :", err)
       callback(err,null);
     } else {
       callback(null,rows);
@@ -103,13 +103,13 @@ var findUserByFbKey = function(fbKey, callback){
   })
 }
 
-//<h3>countUsers</h3>
+//<h3>countAuthors</h3>
 
-//Returns a count of the number of users in the Db
-var countUsers = function(callback){
-  connection.query('select count(*) from users', function(err, count){
+//Returns a count of the number of Authors in the Db
+var countAuthors = function(callback){
+  connection.query('select count(*) from Authors', function(err, count){
     if(err){
-      console.log("Error counting users :", err)
+      console.log("Error counting Authors :", err)
       callback(err, null)
     } else{
       // Response is an array of objects with the "count(*)" key
@@ -119,29 +119,29 @@ var countUsers = function(callback){
   })
 }
 
-//<h3>getAllUsers</h3>
+//<h3>getAllAuthors</h3>
 
-//Returns an array of all users, can be used for populating
-var getAllUsers = function(callback){
-  connection.query('select * from users', function(err, users){
+//Returns an array of all Authors, can be used for populating
+var getAllAuthors = function(callback){
+  connection.query('select * from Authors', function(err, Authors){
     if(err){
-      console.log("Error collecting users :", err)
+      console.log("Error collecting Authors :", err)
       callback(err, null)
     } else{
       // Response is an array of objects with the "count(*)" key
       // since we are actually doing the wildcard count that will be our key
-      callback(null, users)
+      callback(null, Authors)
     }
   })
 }
 
-//<h3>getTopUsers</h3>
+//<h3>getTopAuthors</h3>
 
-// Returns array of top n users, ranked by current score
-var getTopUsers = function(limit, callback) {
-  connection.query('SELECT * FROM users ORDER BY currentScore DESC LIMIT ?',limit, function(err, res) {
+// Returns array of top n Authors, ranked by current score
+var getTopAuthors = function(limit, callback) {
+  connection.query('SELECT * FROM Authors ORDER BY currentScore DESC LIMIT ?',limit, function(err, res) {
     if (err) {
-      console.log('Error finding all users sorted by current score');
+      console.log('Error finding all Authors sorted by current score');
       callback(err, null);
     } else {
       callback(null, res);
@@ -149,23 +149,23 @@ var getTopUsers = function(limit, callback) {
   })
 }
 
-//<h3>updateUser</h3>
+//<h3>updateAuthor</h3>
 
 //Even though this leverages two controller methods since it is
 //essentially just an update it is here.
-//newUserObj must have user_id and the new properties
-var updateUser = function(newUserObj, callback){
-  var user_id = newUserObj.id
-  findUserById(user_id, function(err, userObj){
-    userObj = userObj[0]
-    _.extend(userObj, newUserObj)
-    connection.query('UPDATE users SET ? Where ID = ?',[userObj, user_id], function (err, result) {
+//newAuthorObj must have Author_id and the new properties
+var updateAuthor = function(newAuthorObj, callback){
+  var Author_id = newAuthorObj.id
+  findAuthorById(Author_id, function(err, AuthorObj){
+    AuthorObj = AuthorObj[0]
+    _.extend(AuthorObj, newAuthorObj)
+    connection.query('UPDATE Authors SET ? Where ID = ?',[AuthorObj, Author_id], function (err, result) {
         if (err){
-          console.log("Error updating user # " + user_id)
+          console.log("Error updating Author # " + Author_id)
           callback(err, null)
         } else{
-          console.log('Updated user ' + user_id);
-          callback(null, userObj);
+          console.log('Updated Author ' + Author_id);
+          callback(null, AuthorObj);
         }
       }
     );
@@ -174,32 +174,32 @@ var updateUser = function(newUserObj, callback){
 
 //<h3>updateKarma</h3>
 
-//Updates the karma of a specified user this is kept as a
+//Updates the karma of a specified Author this is kept as a
 //seperate function because it utilized the difference rather
 //than just overwriting the property, this leads to fewer
 //db interactions. It CAN accept a negative value for karmaChange
-var updateKarma = function(userId, karmaChange, callback){
-  connection.query('UPDATE users SET karma = karma +? Where ID = ?',[karmaChange, userId], function (err, result) {
+var updateKarma = function(AuthorId, karmaChange, callback){
+  connection.query('UPDATE Authors SET karma = karma +? Where ID = ?',[karmaChange, AuthorId], function (err, result) {
       if (err){
-        console.log("Error updating Karma of userId " + userId)
+        console.log("Error updating Karma of AuthorId " + AuthorId)
         callback(err, null)
       } else{
-        console.log('Changed user ' + userId + '\'s karma by ' + karmaChange);
-        callback(null, userId);
+        console.log('Changed Author ' + AuthorId + '\'s karma by ' + karmaChange);
+        callback(null, AuthorId);
       }
     }
   );
 }
 
-//<h3>deleteUser</h3>
-//Deletes a user specified by a userId
-var deleteUser = function(userId, callback){
-  connection.query('DELETE FROM users WHERE id = ?',userId, function (err, response) {
+//<h3>deleteAuthor</h3>
+//Deletes a Author specified by a AuthorId
+var deleteAuthor = function(AuthorId, callback){
+  connection.query('DELETE FROM Authors WHERE id = ?',AuthorId, function (err, response) {
     if (err) {
-      console.log("error deleting user " + userId, err)
+      console.log("error deleting Author " + AuthorId, err)
       callback(err, null)
     }else{
-      console.log('Deleted user number ' + userId);
+      console.log('Deleted Author number ' + AuthorId);
       callback(null, response);
     }
   });
@@ -209,11 +209,11 @@ var deleteUser = function(userId, callback){
 
 module.exports = {
   connection: connection,
-  //user methods
-  addUser: addUser,
-  findUser: findUser,
-  findUserById: findUserById,
-  updateUser: updateUser,
-  deleteUser: deleteUser,
-  findUserByPrimaryEmail : findUserByPrimaryEmail
+  //Author methods
+  addAuthor: addAuthor,
+  findAuthor: findAuthor,
+  findAuthorById: findAuthorById,
+  updateAuthor: updateAuthor,
+  deleteAuthor: deleteAuthor,
+  findAuthorByPrimaryEmail : findAuthorByPrimaryEmail
 };

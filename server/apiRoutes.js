@@ -5,25 +5,25 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 module.exports = function (app, express) {
 
     app.post('/login', function (req, res) {
-        mainController.findUserByPrimaryEmail(req.body.primaryEmail, function (err, response) {
+        mainController.findAuthorByPrimaryEmail(req.body.primaryEmail, function (err, response) {
             if(err){
-                console.log("Error in login router finding user by primaryEmail", err)
+                console.log("Error in login router finding Author by primaryEmail", err)
             } else {
                 if(response.length){
-                    var userData = response[0]
+                    var authorData = response[0]
                     //will be a bcrypt check
-                    bcrypt.compare(req.body.password, userData.password, function(err, bcryptResponse){
-                        delete userData["password"]
+                    bcrypt.compare(req.body.password, authorData.password, function(err, bcryptResponse){
+                        delete authorData["password"]
                         if(err){
                             console.log("Error in login comparing passwords")
                         } else {
                             if(bcryptResponse){
-                                var token = jwt.sign(userData, 'supernova', {
+                                var token = jwt.sign(authorData, 'supernova', {
                                     expiresIn: "1d"
                                 });
                                 res.send({loggedin: true,
                                                     token: token,
-                                                    userData: userData})
+                                                    authorData: authorData})
                             } else {
                                 res.send({loggedin : false, message: "incorrect password"})
                             }
@@ -36,10 +36,10 @@ module.exports = function (app, express) {
         })    
     })
 
-    app.post('/createUser', function (req, res) {
-    mainController.findUserByPrimaryEmail(req.body.primaryEmail, function (err, response){
+    app.post('/createAuthor', function (req, res) {
+    mainController.findAuthorByPrimaryEmail(req.body.primaryEmail, function (err, response){
         if(err){
-            console.log("Error in router finding user by primaryEmail")
+            console.log("Error in router finding Author by primaryEmail")
         } else {
             if(response.length){
                 res.send({created:false, message: "I'm sorry that Email already has an account"})
@@ -49,9 +49,9 @@ module.exports = function (app, express) {
                         console.log("Error hashing password", err)
                     } else {
                         req.body.password = hash
-                        mainController.addUser(req.body, function (err, response){
+                        mainController.addAuthor(req.body, function (err, response){
                             if(err){
-                                console.log("Error in router creating new user", req.body)
+                                console.log("Error in router creating new Author", req.body)
                             } else {
                                 res.send({created:true})
                             }
@@ -61,7 +61,7 @@ module.exports = function (app, express) {
             }
         }
 
-        // res.send({created:false, message: "Error creating user. Please try again"})
+        // res.send({created:false, message: "Error creating Author. Please try again"})
     })
 })
 }

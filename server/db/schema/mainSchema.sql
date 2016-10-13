@@ -2,12 +2,11 @@ CREATE DATABASE thePenMainDb;
 
 USE thePenMainDb;
 
-CREATE TABLE users (
+CREATE TABLE authors (
   /* a user table */
-  id int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (ID),
   displayName varchar(200) NOT NULL,
   displayUrl varchar(200) NOT NULL,
+  PRIMARY KEY (displayUrl),
   primaryEmail varchar(200) NOT NULL,
   profile_photo varchar(300),
   password varchar(200) NOT NULL
