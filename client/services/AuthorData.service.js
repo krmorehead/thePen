@@ -32,7 +32,7 @@
                 template: 'pages',
                 slug: 'aboutMe',
                 sections: [{
-                    img: AuthorData.profile_photo || "resources/avatars/blankAvatar.png",
+                    img: "resources/avatars/blankAvatar.png",
                 }]
             },
             {
@@ -93,11 +93,21 @@
                     }
                 },
             };
+
+            addSaveButton(defaultPage);
             var currentPage = _.merge(defaultPage, customPage);
             _.each(currentPage.sections, function (section) {
                 section.paragraphs = parseTextForView(section.text);
             })
             return currentPage;
+        }
+
+        function addSaveButton(page) {
+            page.settings.button = page.settings.button || {};
+            page.settings.button.styles = {
+                'border-radius': page.settings.body['border-radius'],
+                'background-color': page.settings.body['background-color'],
+            }
         }
 
         function parseTextForView(text) {

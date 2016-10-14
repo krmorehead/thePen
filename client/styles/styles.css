@@ -128,3 +128,31 @@ md-content{
     box-shadow:        inset 0vw 0vh 15px 4px rgba(30, 30, 30, 1);
     outline: 0;
 }
+
+.buttonContainer{
+    min-width: 100px;
+    max-width: 150px;
+    min-height: 75px;
+    max-height: 100px;
+    text-align: center;
+}
+
+.button{
+    border-radius: 10px;
+    padding:5 10 5 10;
+    -webkit-box-shadow:inset 0vw 0vh 3px 4px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:   inset 0vw 0vh 3px 4px rgba(50, 50, 50, 0.75);
+    box-shadow:        inset 0vw 0vh 3px 4px rgba(50, 50, 50, 0.75);
+}
+
+.button:hover{
+    -webkit-box-shadow:inset 0vw 0vh 5px 4px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:   inset 0vw 0vh 5px 4px rgba(50, 50, 50, 0.75);
+    box-shadow:        inset 0vw 0vh 5px 4px rgba(50, 50, 50, 0.75);
+}
+
+.button:active{
+    -webkit-box-shadow:inset 0vw 0vh 15px 4px rgba(30, 30, 30, 1);
+    -moz-box-shadow:   inset 0vw 0vh 15px 4px rgba(30, 30, 30, 1);
+    box-shadow:        inset 0vw 0vh 15px 4px rgba(30, 30, 30, 1);
+    outl

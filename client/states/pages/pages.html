@@ -51,7 +51,23 @@
 
             </div>
         </div>
-    <span flex></span>
+    <span flex layout = "row">
+      <span flex></span>
+      <div layout = "column">
+
+        <div ng-style = "vm.pageData.settings.button.styles" class = "buttonContainer shadow" layout = "column" ng-if = "vm.isDirty">
+          <span flex></span>
+          <div layout = "row">
+            <span flex></span>
+            <label class = "button">Save</label>
+            <span flex></span>
+          </div>
+          <span flex></span>
+        </div>
+        <span flex></span>
+      </div>
+      <span flex></span>
+    </span>
 </div>
 
 
