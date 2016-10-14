@@ -23,7 +23,7 @@
         function addPages(displayUrl, pages) {
             return $http({
                 method: "POST",
-                url: "/addPages",
+                url: "/addAuthorPages",
                 data: {
                     displayUrl: displayUrl,
                     pages: pages

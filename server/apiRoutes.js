@@ -2,6 +2,7 @@ var mainController = require('./db/mainController')
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var Q = require('q');
+var _ = require('lodash')
 
 module.exports = function (app, express) {
 
@@ -14,16 +15,19 @@ module.exports = function (app, express) {
         })
     })
 
-    app.post('/addPages', function (req, res) {
+    app.post('/addAuthorPages', function (req, res) {
         var displayUrl = req.body.displayUrl;
         var pages = req.body.pages;
-        console.log(req.body);
+        var promises = []
 
-        // Q.nfapply(mainController.addPages, [displayUrl, pages])
-        // .then(function (response) {
-        //     console.log(response);
-        //     res.send(200)
-        // })
+        _.each(pages, function (page) {
+            promises.push(Q.nfcall(mainController.addAuthorPage, displayUrl, page))
+
+        })
+        Q.all(promises)
+        .then(function (response) {
+            res.send(200)
+        })
     })
 
     app.post('/login', function (req, res) {

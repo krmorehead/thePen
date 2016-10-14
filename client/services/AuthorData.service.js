@@ -15,7 +15,8 @@
         // default AuthorData
         var AuthorData = {
             displayName: 'Kyle',
-            id:1
+            id:1,
+            displayUrl: 'krmorehead'
         };
         var pages = [
             {
@@ -61,9 +62,6 @@
                 return page
             }
         });
-
-        AuthorDataApi.addPages(AuthorData.displayUrl, AuthorData.pages)
-
 
         function buildPage(customPage) {
             customPage = customPage || {};

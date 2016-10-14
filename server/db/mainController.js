@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 var connection = mysql.createConnection({
   user: "root",
-  password: "Kamnec1!",
+  password: "SillyWilly",
   database: "thePenMainDb"
 });
 
@@ -90,13 +90,19 @@ var getAuthorPages = function(displayUrl, callback){
 }
 
 
-var addAuthorPage = function (newAuthorPage, callback) {
-  newAuthorPage.pageData = JSON.stringify(newAuthorPage.pageData) || '{}'
-  connection.query('Insert Into Pages Set ?', newAuthorPage, function (err, result) {
+var addAuthorPage = function (displayUrl, newAuthorPage, callback) {
+  var pageEntry = {
+    displayUrl: displayUrl,
+    slug: newAuthorPage.slug,
+  }
+
+  pageEntry.pageData = JSON.stringify(newAuthorPage) || '{}'
+  connection.query('Insert Into Pages Set ?', pageEntry, function (err, result) {
     if (err) {
       console.log("Error inserting Author page:", err)
       callback(err,null);
     } else {
+      console.log("Error inserting Author page:", err)
       callback(null,result);
     }    
   })
@@ -194,7 +200,7 @@ module.exports = {
   //Author methods
   addAuthor: addAuthor,
   getAuthor: getAuthor,
-  getAuthorPages: getAuthorPages,
+  addAuthorPage: addAuthorPage,
   updateAuthor: updateAuthor,
   deleteAuthor: deleteAuthor,
   getAuthorByDisplayUrl : getAuthorByDisplayUrl
