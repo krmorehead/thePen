@@ -3,7 +3,7 @@ var _ = require('underscore');
 
 var connection = mysql.createConnection({
   user: "root",
-  password: "SillyWilly",
+  password: "nutterButtSquash",
   database: "thePenMainDb"
 });
 
@@ -48,7 +48,7 @@ var getAuthor = function(displayUrl, password, callback){
 }
 
 var getAuthorByDisplayUrl = function(displayUrl, callback){
-  connection.query('SELECT * FROM Authors where displayUrl=?', [displayUrl], function(err, rows){
+  connection.query('SELECT displayName, profile_photo, displayUrl FROM Authors where displayUrl=?', [displayUrl], function(err, rows){
     if(err){
       console.log("Error in controllers.js finding Author by displayUrl :", err)
       callback(err, null);

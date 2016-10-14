@@ -5,7 +5,7 @@
         .factory("AuthorData", AuthorData);
 
 
-    function AuthorData(LocalStorage, AuthorDataApi) {
+    function AuthorData(LocalStorage, AuthorDataApi, $q) {
         var factory = {
             getPageData: getPageData,
             getAuthorData: getAuthorData,
@@ -13,11 +13,12 @@
             parseTextForView: parseTextForView
         };
         // default AuthorData
-        var AuthorData = {
-            displayName: 'Kyle',
-            id:1,
-            displayUrl: 'krmorehead'
-        };
+        var AuthorData;
+        //  {
+        //     displayName: 'Kyle',
+        //     id:1,
+        //     displayUrl: 'krmorehead'
+        // };
         var pages = [
             {
                 pageName: "Home",
@@ -55,13 +56,15 @@
                 slug: 'contact'
             }
         ]
-        AuthorData.pages = _.map(pages, function (page) {
-            if (page.template) {
-                return buildPage(page)
-            } else {
-                return page
-            }
-        });
+        function buildAuthorPages() {
+            AuthorData.pages = _.map(pages, function (page) {
+                if (page.template) {
+                    return buildPage(page)
+                } else {
+                    return page
+                }
+            });
+        }
 
         function buildPage(customPage) {
             customPage = customPage || {};
@@ -115,18 +118,27 @@
         }
 
         function getAuthorData(displayUrl) {
-            return AuthorData;
+            if (AuthorData) {
+                return $q.when(AuthorData)
+            } else {
+                return AuthorDataApi.getAuthorData(displayUrl)
+                .then(function (data) {
+                    AuthorData = data;
+                    buildAuthorPages();
+                    return data;
+                });
+            }
         }
 
-        function getPageData(slug) {
+        function getPageData(displayUrl, slug) {
             var pageData;
-            _.each(AuthorData.pages, function (page) {
+            _.each(pages, function (page) {
                 if (page.slug === slug) {
                     pageData = page;
                     return false;
                 }
             })
-            return pageData;
+            return $q.when(pageData);
         }
 
         function updateAuthorData(newAuthorData) {

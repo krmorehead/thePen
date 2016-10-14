@@ -10,8 +10,11 @@ angular.module("thePen.HomepageCtrl", [])
     function initialize() {
         vm.userData = UserData.getUserData();
         vm.settings = Settings.getSettings();
+        AuthorData.getAuthorData($stateParams.displayUrl)
+        .then(function (authorData) {
+            vm.authorData = authorData;
+        })
 
-        vm.authorData = AuthorData.getAuthorData($stateParams.displayUrl);
     }
     function go(page) {
         var state = page.template || page.slug;

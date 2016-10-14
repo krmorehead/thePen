@@ -7,6 +7,7 @@ function StoriesCtrl($scope, $stateParams, $state, AuthorData, UserData){
     vm.stateSlug = $stateParams.page;
     vm.editMode = false;
     vm.isDirty = false;
+    var displayUrl = $stateParams.displayUrl;
 
     initialize()
 
@@ -14,8 +15,18 @@ function StoriesCtrl($scope, $stateParams, $state, AuthorData, UserData){
     function initialize() {
         vm.userData = UserData.getUserData();
 
-        vm.pageData = AuthorData.getPageData(vm.stateSlug);
-        vm.onOwnPage = vm.userData.id === AuthorData.getAuthorData().id;
+        AuthorData.getAuthorData($stateParams.displayUrl)
+        .then(function (AuthorData){
+            vm.AuthorData = AuthorData;
+        })
+
+        vm.pageData
+        AuthorData.getPageData(displayUrl, vm.stateSlug)
+        .then(function (pageData) {
+            vm.pageData = pageData;
+        })
+        
+        // vm.onOwnPage = vm.userData.id === AuthorData.getAuthorData().id;
         $scope.$watch("vm.pageData", function(){
             if (vm.editMode) {
                 vm.isDirty = true;
